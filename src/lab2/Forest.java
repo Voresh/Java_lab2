@@ -20,7 +20,15 @@ public class Forest {
 		CreateTestPlants();
 		CreateTestAnimals();
 		
+		Predator wolf = new Predator(3);
+		
+		System.out.println("Initial forest: ");
+		wolf.SearchForFood();
 		DisplayForestGrass();
+		DisplayForestAnimals();
+		
+		System.out.println("Order animal of size 3 to search for food: ");
+		wolf.SearchForFood();
 	}
 	
 	public static void CreateTestPlants()
@@ -39,20 +47,20 @@ public class Forest {
 	{
 		GrassType gtype[] = {GrassType.BLUEBERRY,GrassType.RASPBERRY};
 		
-		new Herbivorous(HerbivorousType.DEER, 2, gtype);
-		new Predator(PredatorType.WOLF, 4);
-		new Predator(PredatorType.FOX, 3);
+		new Herbivorous(2, gtype);
+		new Predator(4);
+		new Predator(3);
 	}
 	
 	public static void DisplayForestGrass() {
 		for (Grass _grass : grass) {
-			System.out.println(_grass.getType().toString());
+			System.out.println("Grass type of: " + _grass.getType().toString());
 		}
 	}
 	
 	public static void DisplayForestAnimals() {
 		for (Animal animal : animals) {
-			System.out.println();
+			System.out.println("Animal size of: " + animal.size);
 		}
 	}
 	
