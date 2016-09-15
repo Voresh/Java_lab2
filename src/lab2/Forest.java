@@ -22,20 +22,45 @@ public class Forest {
 		CreateTestPlants();
 		CreateTestAnimals();
 		
-		Predator wolf = new Predator(3);
-		
 		System.out.println("Initial forest: ");
-		wolf.SearchForFood();
+
 		DisplayForestGrass();
 		DisplayForestAnimals();
 		
-		System.out.println("Order to animal of size 3 to search for food: ");
-		wolf.SearchForFood();
+		RunHerbivorousTest(0);
+		RunPredatorTest(2);
+	}
+	
+	public static void RunPredatorTest(int index){
+		System.out.println("___PREDATOR_TEST___");
+		Animal testPredator = animals.get(index);
+		testPredator.SearchForFood();
+		
+		DisplayForestAnimals();
+
+		testPredator.SearchForFood();
+		
+		DisplayForestAnimals();
+		System.out.println("___PREDATOR_TEST___");
+	}
+	
+	public static void RunHerbivorousTest(int index){
+		System.out.println("___HERVIVOROUS_TEST___");
+		Animal testHerbivorous = animals.get(index);
+		
+		testHerbivorous.SearchForFood();
+		
+		DisplayForestGrass();
+		
+		testHerbivorous.SearchForFood();
+		
+		DisplayForestGrass();
+		System.out.println("___HERVIVOROUS_TEST___");
 	}
 	
 	public static void CreateTestPlants()
 	{
-		new Grass(GrassType.BLUEBERRY);
+		new Grass(GrassType.RASPBERRY);
 		new Grass(GrassType.BLUEBERRY);
 		new Grass(GrassType.RASPBERRY);
 		new Grass(GrassType.STRAWBERRY);
@@ -47,27 +72,32 @@ public class Forest {
 	
 	public static void CreateTestAnimals()
 	{
-		GrassType gtype[] = {GrassType.BLUEBERRY,GrassType.RASPBERRY};
-		
-		new Herbivorous(2, gtype);
+		new Herbivorous(2, GrassType.RASPBERRY);
 		new Predator(4);
 		new Predator(3);
 	}
 	
 	public static void DisplayForestGrass() {
+		System.out.println("Current grass: ");
 		for (Grass _grass : grass) {
 			System.out.println("Grass " + _grass.getId() + " type of: " + _grass.getType().toString());
 		}
 	}
 	
 	public static void DisplayForestAnimals() {
+		System.out.println("Current animals: ");
 		for (Animal animal : animals) {
 			System.out.println("Animal " + animal.getId() + " size of: " + animal.size);
 		}
 	}
 	
-	public static void SearchForGrassOfType(GrassType type){
-		
+	public static Grass SearchForGrassOfType(GrassType type){
+		for (Grass _grass : grass){
+			if (_grass.getType() == type){
+				return _grass;
+			}
+		}
+		return null;
 	}
 	
 	public static Animal SearchForAnimalsWithSizeLess(int size){
@@ -81,6 +111,10 @@ public class Forest {
 	
 	public static void RemoveAnimalFromForest(int id){
 		animals.remove(id);
+	}
+	
+	public static void RemoveGrassFromForest(int id){
+		grass.remove(id);
 	}
 	
 	public static void AddGrassToForest(Grass _grass) {

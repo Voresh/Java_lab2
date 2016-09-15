@@ -27,4 +27,8 @@ public class Grass extends Plant {
 		this.type = type;
 		Forest.AddGrassToForest(this);
 	}
+	
+	public void KillGrass() {
+		Forest.RemoveGrassFromForest(id);
+	}
 }
