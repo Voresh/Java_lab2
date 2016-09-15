@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class Forest {
 	private static ArrayList<Animal> animals = new ArrayList<Animal>();
 	private static ArrayList<Grass> grass = new ArrayList<Grass>();
+	private static int currentAnimalId = 0;
+	private static int currentGrassId = 0;
 	
 	public static void main(String[] args) {
 		CreateTestPlants();
@@ -27,7 +29,7 @@ public class Forest {
 		DisplayForestGrass();
 		DisplayForestAnimals();
 		
-		System.out.println("Order animal of size 3 to search for food: ");
+		System.out.println("Order to animal of size 3 to search for food: ");
 		wolf.SearchForFood();
 	}
 	
@@ -54,21 +56,42 @@ public class Forest {
 	
 	public static void DisplayForestGrass() {
 		for (Grass _grass : grass) {
-			System.out.println("Grass type of: " + _grass.getType().toString());
+			System.out.println("Grass " + _grass.getId() + " type of: " + _grass.getType().toString());
 		}
 	}
 	
 	public static void DisplayForestAnimals() {
 		for (Animal animal : animals) {
-			System.out.println("Animal size of: " + animal.size);
+			System.out.println("Animal " + animal.getId() + " size of: " + animal.size);
 		}
+	}
+	
+	public static void SearchForGrassOfType(GrassType type){
+		
+	}
+	
+	public static Animal SearchForAnimalsWithSizeLess(int size){
+		for (Animal animal : animals){
+			if (animal.size < size){
+				return animal;
+			}
+		}
+		return null;
+	}
+	
+	public static void RemoveAnimalFromForest(int id){
+		animals.remove(id);
 	}
 	
 	public static void AddGrassToForest(Grass _grass) {
 		grass.add(_grass);
+		_grass.setId(currentGrassId);
+		currentGrassId++;
 	}
 	
 	public static void AddAnimalToForest(Animal animal) {
 		animals.add(animal);
+		animal.setId(currentAnimalId);
+		currentAnimalId++;
 	}
 }

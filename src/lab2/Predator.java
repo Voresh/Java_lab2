@@ -9,5 +9,12 @@ public class Predator extends Animal {
 	
 	@Override
 	public void SearchForFood() {
+		Animal food = Forest.SearchForAnimalsWithSizeLess(size);
+		if (food != null) {
+			System.out.println("Kill " + food.getId());
+			food.KillAnimal();
+		} else {
+			System.out.println("No food");
+		}
 	}
 }
