@@ -7,28 +7,28 @@ enum GrassType {
 }
 
 public class Grass extends Plant {
-	private GrassType type;
-	private int id;
+	private GrassType mType;
+	private int mId;
 
 	public GrassType getType() {
-		return type;
+		return mType;
 	}
 	
 	public int getId() {
-		return id;
+		return mId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.mId = id;
 	}
 
 	public Grass(GrassType type) {
 		super();
-		this.type = type;
+		this.mType = type;
 		Forest.AddGrassToForest(this);
 	}
 	
 	public void KillGrass() {
-		Forest.RemoveGrassFromForest(id);
+		Forest.RemoveGrassFromForest(mId);
 	}
 }

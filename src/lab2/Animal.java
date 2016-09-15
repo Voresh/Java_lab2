@@ -1,19 +1,19 @@
 package lab2;
 
 public abstract class Animal {
-	protected int size = 0;
-	protected int id = 0;
+	protected int mSize = 0;
+	protected int mId = 0;
 
 	public int getSize() {
-		return size;
+		return mSize;
 	}
 	
 	public int getId() {
-		return id;
+		return mId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.mId = id;
 	}
 
 	public Animal() {
@@ -21,7 +21,7 @@ public abstract class Animal {
 	}
 	
 	public void KillAnimal() {
-		Forest.RemoveAnimalFromForest(id);
+		Forest.RemoveAnimalFromForest(mId);
 	}
 
 	public abstract void SearchForFood();

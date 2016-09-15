@@ -7,14 +7,14 @@ enum TreeType {
 }
 
 public class Tree extends Plant {
-	private TreeType type;
+	private TreeType mType;
 	
 	public Tree(TreeType type) {
 		super();
-		this.type = type;
+		this.mType = type;
 	}
 
 	public TreeType getType() {
-		return type;
+		return mType;
 	}
 }

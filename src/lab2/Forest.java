@@ -13,10 +13,10 @@ import java.util.ArrayList;
    Необходимо учесть, что травоядные питаются только определенным видом растений, а хищники могут съесть только животных меньше себя.
  */
 public class Forest {
-	private static ArrayList<Animal> animals = new ArrayList<Animal>();
-	private static ArrayList<Grass> grass = new ArrayList<Grass>();
-	private static int currentAnimalId = 0;
-	private static int currentGrassId = 0;
+	private static ArrayList<Animal> sAnimals = new ArrayList<Animal>();
+	private static ArrayList<Grass> sGrass = new ArrayList<Grass>();
+	private static int sCurrentAnimalId = 0;
+	private static int sCurrentGrassId = 0;
 	
 	public static void main(String[] args) {
 		CreateTestPlants();
@@ -33,7 +33,7 @@ public class Forest {
 	
 	public static void RunPredatorTest(int index){
 		System.out.println("___PREDATOR_TEST___");
-		Animal testPredator = animals.get(index);
+		Animal testPredator = sAnimals.get(index);
 		testPredator.SearchForFood();
 		
 		DisplayForestAnimals();
@@ -46,7 +46,7 @@ public class Forest {
 	
 	public static void RunHerbivorousTest(int index){
 		System.out.println("___HERVIVOROUS_TEST___");
-		Animal testHerbivorous = animals.get(index);
+		Animal testHerbivorous = sAnimals.get(index);
 		
 		testHerbivorous.SearchForFood();
 		
@@ -79,53 +79,64 @@ public class Forest {
 	
 	public static void DisplayForestGrass() {
 		System.out.println("Current grass: ");
-		for (Grass _grass : grass) {
+		for (Grass _grass : sGrass) {
 			System.out.println("Grass " + _grass.getId() + " type of: " + _grass.getType().toString());
 		}
 	}
 	
 	public static void DisplayForestAnimals() {
 		System.out.println("Current animals: ");
-		for (Animal animal : animals) {
-			System.out.println("Animal " + animal.getId() + " size of: " + animal.size);
+		for (Animal animal : sAnimals) {
+			System.out.println("Animal " + animal.getId() + " size of: " + animal.mSize);
 		}
 	}
 	
 	public static Grass SearchForGrassOfType(GrassType type){
-		for (Grass _grass : grass){
-			if (_grass.getType() == type){
-				return _grass;
+		for (Grass grass : sGrass){
+			if (grass.getType() == type){
+				return grass;
 			}
 		}
 		return null;
 	}
 	
 	public static Animal SearchForAnimalsWithSizeLess(int size){
-		for (Animal animal : animals){
-			if (animal.size < size){
+		for (Animal animal : sAnimals){
+			if (animal.mSize < size){
 				return animal;
 			}
 		}
 		return null;
 	}
-	
+
 	public static void RemoveAnimalFromForest(int id){
-		animals.remove(id);
+		for(int i=0; i < sAnimals.size(); i++) {
+			if (sAnimals.get(i).getId() == id)
+			{
+				sAnimals.remove(i);
+			}
+		}
 	}
-	
+
 	public static void RemoveGrassFromForest(int id){
-		grass.remove(id);
+		
+		for(int i=0; i < sGrass.size(); i++) {
+			if (sGrass.get(i).getId() == id)
+			{
+				sGrass.remove(i);
+			}
+		}
 	}
 	
-	public static void AddGrassToForest(Grass _grass) {
-		grass.add(_grass);
-		_grass.setId(currentGrassId);
-		currentGrassId++;
+	public static void AddGrassToForest(Grass grass) {
+		sGrass.add(grass);
+		grass.setId(sCurrentGrassId);
+		sCurrentGrassId++;
 	}
 	
 	public static void AddAnimalToForest(Animal animal) {
-		animals.add(animal);
-		animal.setId(currentAnimalId);
-		currentAnimalId++;
+		sAnimals.add(animal);
+		animal.setId(sCurrentAnimalId);
+		sCurrentAnimalId++;
 	}
 }
