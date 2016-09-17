@@ -1,3 +1,9 @@
+#my db
+db/
+#my logs
+logs/
+
+#ideas
 .metadata
 bin/
 tmp/
