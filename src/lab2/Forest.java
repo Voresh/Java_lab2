@@ -1,5 +1,8 @@
 package lab2;
 
+import lab3.ForestDataBase;
+import lab3.ForestLogger;
+
 import java.util.ArrayList;
 
 /*
@@ -19,6 +22,11 @@ public class Forest {
 	private static int sCurrentGrassId = 0;
 	
 	public static void main(String[] args) {
+		ForestLogger log = new ForestLogger();
+		ForestDataBase db = new ForestDataBase();
+
+		log.writeProgramStart();
+
 		createTestPlants();
 		createTestAnimals();
 		
@@ -29,6 +37,8 @@ public class Forest {
 		
 		runHerbivorousTest(0);
 		runPredatorTest(2);
+
+		log.writeProgramEnd();
 	}
 	
 	public static void runPredatorTest(int index){
