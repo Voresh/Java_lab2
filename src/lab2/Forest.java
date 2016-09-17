@@ -19,46 +19,46 @@ public class Forest {
 	private static int sCurrentGrassId = 0;
 	
 	public static void main(String[] args) {
-		CreateTestPlants();
-		CreateTestAnimals();
+		createTestPlants();
+		createTestAnimals();
 		
 		System.out.println("Initial forest: ");
 
-		DisplayForestGrass();
-		DisplayForestAnimals();
+		displayForestGrass();
+		displayForestAnimals();
 		
-		RunHerbivorousTest(0);
-		RunPredatorTest(2);
+		runHerbivorousTest(0);
+		runPredatorTest(2);
 	}
 	
-	public static void RunPredatorTest(int index){
+	public static void runPredatorTest(int index){
 		System.out.println("___PREDATOR_TEST___");
 		Animal testPredator = sAnimals.get(index);
-		testPredator.SearchForFood();
+		testPredator.searchForFood();
 		
-		DisplayForestAnimals();
+		displayForestAnimals();
 
-		testPredator.SearchForFood();
+		testPredator.searchForFood();
 		
-		DisplayForestAnimals();
+		displayForestAnimals();
 		System.out.println("___PREDATOR_TEST___");
 	}
 	
-	public static void RunHerbivorousTest(int index){
-		System.out.println("___HERVIVOROUS_TEST___");
+	public static void runHerbivorousTest(int index){
+		System.out.println("___HERBIVOROUS_TEST___");
 		Animal testHerbivorous = sAnimals.get(index);
 		
-		testHerbivorous.SearchForFood();
+		testHerbivorous.searchForFood();
 		
-		DisplayForestGrass();
+		displayForestGrass();
 		
-		testHerbivorous.SearchForFood();
+		testHerbivorous.searchForFood();
 		
-		DisplayForestGrass();
-		System.out.println("___HERVIVOROUS_TEST___");
+		displayForestGrass();
+		System.out.println("___HERBIVOROUS_TEST___");
 	}
 	
-	public static void CreateTestPlants()
+	public static void createTestPlants()
 	{
 		new Grass(GrassType.RASPBERRY);
 		new Grass(GrassType.BLUEBERRY);
@@ -70,28 +70,28 @@ public class Forest {
 		new Tree(TreeType.PINE);
 	}
 	
-	public static void CreateTestAnimals()
+	public static void createTestAnimals()
 	{
 		new Herbivorous(2, GrassType.RASPBERRY);
 		new Predator(4);
 		new Predator(3);
 	}
 	
-	public static void DisplayForestGrass() {
+	public static void displayForestGrass() {
 		System.out.println("Current grass: ");
 		for (Grass _grass : sGrass) {
 			System.out.println("Grass " + _grass.getId() + " type of: " + _grass.getType().toString());
 		}
 	}
 	
-	public static void DisplayForestAnimals() {
+	public static void displayForestAnimals() {
 		System.out.println("Current animals: ");
 		for (Animal animal : sAnimals) {
 			System.out.println("Animal " + animal.getId() + " size of: " + animal.mSize);
 		}
 	}
 	
-	public static Grass SearchForGrassOfType(GrassType type){
+	public static Grass searchForGrassOfType(GrassType type){
 		for (Grass grass : sGrass){
 			if (grass.getType() == type){
 				return grass;
@@ -100,16 +100,16 @@ public class Forest {
 		return null;
 	}
 	
-	public static Animal SearchForAnimalsWithSizeLess(int size){
+	public static Animal searchForAnimalsWithSizeLess(int size){
 		for (Animal animal : sAnimals){
-			if (animal.mSize < size){
+			if (animal.getSize() < size){
 				return animal;
 			}
 		}
 		return null;
 	}
 
-	public static void RemoveAnimalFromForest(int id){
+	public static void removeAnimalFromForest(int id){
 		for(int i=0; i < sAnimals.size(); i++) {
 			if (sAnimals.get(i).getId() == id)
 			{
@@ -118,7 +118,7 @@ public class Forest {
 		}
 	}
 
-	public static void RemoveGrassFromForest(int id){
+	public static void removeGrassFromForest(int id){
 		
 		for(int i=0; i < sGrass.size(); i++) {
 			if (sGrass.get(i).getId() == id)
@@ -128,13 +128,13 @@ public class Forest {
 		}
 	}
 	
-	public static void AddGrassToForest(Grass grass) {
+	public static void addGrassToForest(Grass grass) {
 		sGrass.add(grass);
 		grass.setId(sCurrentGrassId);
 		sCurrentGrassId++;
 	}
 	
-	public static void AddAnimalToForest(Animal animal) {
+	public static void addAnimalToForest(Animal animal) {
 		sAnimals.add(animal);
 		animal.setId(sCurrentAnimalId);
 		sCurrentAnimalId++;

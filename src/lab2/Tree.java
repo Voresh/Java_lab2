@@ -13,8 +13,4 @@ public class Tree extends Plant {
 		super();
 		this.mType = type;
 	}
-
-	public TreeType getType() {
-		return mType;
-	}
 }

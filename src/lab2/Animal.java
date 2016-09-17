@@ -17,12 +17,12 @@ public abstract class Animal {
 	}
 
 	public Animal() {
-		Forest.AddAnimalToForest(this);
+		Forest.addAnimalToForest(this);
 	}
 	
-	public void KillAnimal() {
-		Forest.RemoveAnimalFromForest(mId);
+	public void killAnimal() {
+		Forest.removeAnimalFromForest(mId);
 	}
 
-	public abstract void SearchForFood();
+	public abstract void searchForFood();
 }

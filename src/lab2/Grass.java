@@ -25,10 +25,10 @@ public class Grass extends Plant {
 	public Grass(GrassType type) {
 		super();
 		this.mType = type;
-		Forest.AddGrassToForest(this);
+		Forest.addGrassToForest(this);
 	}
 	
-	public void KillGrass() {
-		Forest.RemoveGrassFromForest(mId);
+	public void killGrass() {
+		Forest.removeGrassFromForest(mId);
 	}
 }
