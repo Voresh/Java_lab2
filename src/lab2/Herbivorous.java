@@ -8,7 +8,8 @@ public class Herbivorous extends Animal {
 		this.mSize = size;
 		mEatableType = etype;
 	}
-	
+
+	//TODO добавить поедание деревьев
 	@Override
 	public void searchForFood() {
 		System.out.println("Animal eating " + mEatableType.toString() + ", is searching for food");

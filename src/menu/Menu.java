@@ -4,6 +4,18 @@ import java.util.ArrayList;
 
 public class Menu {
     private ArrayList<MenuElement> elements = new ArrayList<MenuElement>();
+    private String name = "default";
+
+    public Menu(String name) {
+        this.name = name;
+    }
+
+    public Menu() {
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public void AddMenuElement(MenuElement element) {
         elements.add(element);

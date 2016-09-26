@@ -6,12 +6,22 @@ public class MenuManager {
     private static Menu currentMenu;
 
     public static void main(String[] args) {
-        currentMenu = new Menu();
+        Menu mainMenu = new Menu("main");
+        currentMenu = mainMenu;
 
-        Menu subMenu = new Menu();
-        subMenu.AddMenuElement(new PredatorCreatorElement("create predator"));
-        subMenu.AddMenuElement(new SwitchMenuElement("back", currentMenu));
-        currentMenu.AddMenuElement(new SwitchMenuElement("create animal", subMenu));
+        Menu animalMenu = new Menu("animals");
+        Menu predatorMenu = new Menu("predators");
+        predatorMenu.AddMenuElement(new PredatorCreatorElement("create predator"));
+        predatorMenu.AddMenuElement(new SwitchMenuElement("back", animalMenu));
+        Menu herbivorousMenu = new Menu("herbivorous");
+        herbivorousMenu.AddMenuElement(new HerbivorousCreatorElement("create herbivorous"));
+        herbivorousMenu.AddMenuElement(new SwitchMenuElement("back", animalMenu));
+
+        animalMenu.AddMenuElement(new SwitchMenuElement("predators", predatorMenu));
+        animalMenu.AddMenuElement(new SwitchMenuElement("herbivorous", herbivorousMenu));
+        animalMenu.AddMenuElement(new SwitchMenuElement("back", mainMenu));
+
+        currentMenu.AddMenuElement(new SwitchMenuElement("animals", animalMenu));
 
         currentMenu.AddMenuElement(new ExitElement());
         getUserInput();
@@ -25,6 +35,7 @@ public class MenuManager {
         Scanner scanner  = new Scanner(System.in);
         while (currentMenu != null) {
             System.out.println("====================");
+            System.out.println("| Menu: " + currentMenu.getName()+" |");
             currentMenu.printMenuElements();
             System.out.print("enter your choice: ");
             if (scanner.hasNextInt()) {

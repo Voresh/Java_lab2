@@ -17,7 +17,6 @@ public class SwitchMenuElement extends MenuElement {
 
     @Override
     public void Execute() {
-        //System.out.println("switch");
         MenuManager.SwitchToMenu(target);
     }
 }
