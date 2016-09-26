@@ -10,11 +10,9 @@ public class MenuElement {
 
     public MenuElement(String name) {
         this.name = name;
-        Menu.AddMenuElement(this);
     }
 
     public MenuElement() {
-        Menu.AddMenuElement(this);
     }
 
     public String getName() {

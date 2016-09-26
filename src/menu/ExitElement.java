@@ -10,9 +10,13 @@ public class ExitElement extends MenuElement {
         super(name);
     }
 
+    public ExitElement() {
+        name = "exit";
+    }
+
     @Override
     public void Execute() {
-        System.out.println("exit");
+        //System.out.println("exit");
         System.exit(0);
     }
 }
