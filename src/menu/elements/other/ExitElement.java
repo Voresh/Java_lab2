@@ -1,5 +1,7 @@
 package menu.elements.other;
 
+import lab2.Forest;
+
 /**
  * Created by vl on 9/21/2016.
  *
@@ -16,6 +18,7 @@ public class ExitElement extends MenuElement {
 
     @Override
     public void Execute() {
-        System.exit(0);
+        //System.exit(0);
+        Forest.SwitchToMenu(null);
     }
 }

@@ -38,6 +38,7 @@ public class KillGrassElement extends MenuElement {
 
         }*/
         grass.killGrass();
-        Forest.RemoveGrassMenu(element, ownerMenu);
+        Forest.SwitchToMenu(ownerMenu);
+        ownerMenu.RemoveMenuElement(element.getId());
     }
 }

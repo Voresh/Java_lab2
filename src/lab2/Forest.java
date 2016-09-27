@@ -6,7 +6,9 @@ import menu.*;
 import menu.elements.creators.GrassCreatorElement;
 import menu.elements.creators.HerbivorousCreatorElement;
 import menu.elements.creators.PredatorCreatorElement;
+import menu.elements.creators.TreeCreatorElement;
 import menu.elements.other.KillGrassElement;
+import menu.elements.other.KillTreeElement;
 import menu.elements.other.SwitchMenuElement;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import java.util.Scanner;
 public class Forest {
 	private static ArrayList<Animal> sAnimals = new ArrayList<Animal>();
 	private static ArrayList<Grass> sGrass = new ArrayList<Grass>();
+    private static ArrayList<Tree> sTrees = new ArrayList<Tree>();
 
 	private static int sCurrentAnimalId = 0;
 	private static int sCurrentGrassId = 0;
@@ -35,6 +38,7 @@ public class Forest {
     private static Menu currentMenu;
     private static Menu plantMenu;
     private static Menu grassMainMenu;
+    private static Menu treesMainMenu;
 	
 	public static void main(String[] args) {
 		logger.writeProgramStart();
@@ -42,7 +46,7 @@ public class Forest {
         createMenu();
         getUserMenuInput();
 
-		logger.writeProgramEnd();
+        logger.writeProgramEnd();
 	}
 
 	private static void createMenu()
@@ -67,6 +71,10 @@ public class Forest {
         grassMainMenu.AddMenuElement(new GrassCreatorElement("create grass"));
         plantMenu.AddMenuElement(new SwitchMenuElement("grass", grassMainMenu));
 
+        treesMainMenu = new Menu("trees", plantMenu);
+        treesMainMenu.AddMenuElement(new TreeCreatorElement("create trees"));
+        plantMenu.AddMenuElement(new SwitchMenuElement("trees", treesMainMenu));
+
         currentMenu.AddMenuElement(new SwitchMenuElement("plants", plantMenu));
     }
 
@@ -87,7 +95,7 @@ public class Forest {
                 currentMenu.executeElement(scanner.nextInt() - 1);
             } else {
                 System.out.println("not int... exit");
-                System.exit(0);
+                currentMenu = null;
             }
         }
     }
@@ -133,6 +141,17 @@ public class Forest {
 			}
 		}
 	}
+
+    public static void removeTreeFromForest(int id){
+
+        for(int i=0; i < sTrees.size(); i++) {
+            if (sTrees.get(i).getId() == id)
+            {
+                logger.writeOtherMessage("tree of type " + sTrees.get(i).getType().toString() +  " removed");
+                sTrees.remove(i);
+            }
+        }
+    }
 	
 	public static void addGrassToForest(Grass grass) {
 		sGrass.add(grass);
@@ -141,16 +160,20 @@ public class Forest {
 		logger.writeOtherMessage("grass of type " + grass.getType().toString() +  " created");
         createGrassMenu(grass);
 	}
+
+    public static void addTreeToForest(Tree tree) {
+        sTrees.add(tree);
+        tree.setId(sCurrentGrassId);
+        sCurrentGrassId++;
+        logger.writeOtherMessage("tree of type " + tree.getType().toString() +  " created");
+        createTreeMenu(tree);
+    }
 	
 	public static void addAnimalToForest(Animal animal) {
 		sAnimals.add(animal);
 		animal.setId(sCurrentAnimalId);
 		sCurrentAnimalId++;
 	}
-
-	public static void addHerbivorousToForest(Animal animal) {
-
-    }
 
     private static void createGrassMenu(Grass grass) {
         String typeName = grass.getType().toString().toLowerCase();
@@ -160,13 +183,15 @@ public class Forest {
         SwitchMenuElement grassSwitchElement = new SwitchMenuElement(typeName + " grass", grassMenu);
         grassMenu.AddMenuElement(new KillGrassElement("remove grass", grass,grassSwitchElement, grassMainMenu));
         grassMainMenu.AddMenuElement(grassSwitchElement);
-
-       // grassMenus.add(grassMenu);
     }
 
-    public static void RemoveGrassMenu(SwitchMenuElement element, Menu ownerMenu) {
-        //grassMenus.remove(menu);
-        SwitchToMenu(ownerMenu);
-        ownerMenu.RemoveMenuElement(element.getId());
+    private static void createTreeMenu(Tree tree) {
+        String typeName = tree.getType().toString().toLowerCase();
+        String description = "id: " + tree.getId() + "\n" + "type: " + typeName;
+
+        Menu treeMenu = new Menu("current tree menu", description, treesMainMenu);
+        SwitchMenuElement treeSwitchElement = new SwitchMenuElement(typeName + " tree", treeMenu);
+        treeMenu.AddMenuElement(new KillTreeElement("remove tree", tree,treeSwitchElement, treesMainMenu));
+        treesMainMenu.AddMenuElement(treeSwitchElement);
     }
 }

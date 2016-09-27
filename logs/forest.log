@@ -1,132 +1,20 @@
-[15:09:07]Program started
-[15:09:07]grass of type RASPBERRY created
-[15:09:07]grass of type BLUEBERRY created
-[15:09:07]grass of type RASPBERRY created
-[15:09:07]grass of type STRAWBERRY created
-[15:09:07]grass of type RASPBERRY removed
-[15:09:07]grass of type RASPBERRY removed
-[15:09:07]Program ended
-[15:10:15]Program started
-[15:10:15]grass of type RASPBERRY created
-[15:10:15]grass of type BLUEBERRY created
-[15:10:15]grass of type RASPBERRY created
-[15:10:15]grass of type STRAWBERRY created
-[15:10:15]grass of type RASPBERRY removed
-[15:10:15]grass of type RASPBERRY removed
-[15:10:15]Program ended
-[15:21:42]Program started
-[15:21:48]Program started
-[15:22:59]Program started
-[15:26:38]Program started
-[15:28:02]Program started
-[15:38:59]Program started
-[15:39:04]grass of type STRAWBERRY created
-[15:40:07]Program started
-[15:40:17]grass of type STRAWBERRY created
-[15:48:56]Program started
-[15:49:28]Program started
-[15:50:03]Program started
-[15:50:15]Program started
-[15:50:59]Program started
-[15:51:16]Program started
-[15:52:36]Program started
-[15:54:00]Program started
-[15:55:03]Program started
-[15:55:12]Program started
-[15:56:34]Program started
-[15:57:12]Program started
-[15:57:18]Program started
-[15:57:31]Program started
-[15:57:33]Program started
-[15:57:37]grass of type STRAWBERRY created
-[15:57:42]grass of type STRAWBERRY created
-[15:58:38]Program started
-[15:59:01]Program started
-[16:01:42]Program started
-[16:01:47]Program started
-[16:04:26]Program started
-[16:04:38]grass of type STRAWBERRY created
-[16:04:42]grass of type RASPBERRY created
-[16:05:22]Program started
-[16:05:37]grass of type STRAWBERRY created
-[16:06:17]Program started
-[16:06:27]grass of type BLUEBERRY created
-[16:06:30]grass of type RASPBERRY created
-[16:08:00]Program started
-[16:08:04]grass of type STRAWBERRY created
-[16:08:14]Program started
-[16:08:18]grass of type RASPBERRY created
-[16:14:25]Program started
-[16:14:31]grass of type STRAWBERRY created
-[16:20:49]Program started
-[16:21:40]Program started
-[16:22:21]Program started
-[16:25:46]Program started
-[16:25:56]grass of type STRAWBERRY created
-[16:26:16]Program started
-[16:26:20]grass of type STRAWBERRY created
-[16:43:48]Program started
-[16:43:53]grass of type BLUEBERRY created
-[16:43:59]grass of type STRAWBERRY created
-[17:06:17]Program started
-[17:06:23]grass of type STRAWBERRY created
-[17:06:32]grass of type STRAWBERRY created
-[17:08:58]Program started
-[17:09:27]Program started
-[17:09:32]grass of type BLUEBERRY created
-[17:14:26]Program started
-[17:14:30]grass of type STRAWBERRY created
-[17:17:54]Program started
-[17:17:58]grass of type STRAWBERRY created
-[17:25:25]Program started
-[17:26:11]Program started
-[17:26:19]grass of type STRAWBERRY created
-[17:26:21]grass of type STRAWBERRY removed
-[17:28:22]Program started
-[17:28:26]grass of type STRAWBERRY created
-[17:28:28]grass of type STRAWBERRY removed
-[17:37:42]Program started
-[17:37:47]grass of type RASPBERRY created
-[17:37:49]grass of type STRAWBERRY created
-[17:37:53]grass of type STRAWBERRY removed
-[17:38:01]grass of type RASPBERRY removed
-[17:45:40]Program started
-[17:45:45]grass of type STRAWBERRY created
-[17:55:06]Program started
-[17:55:13]grass of type STRAWBERRY created
-[17:55:16]grass of type STRAWBERRY removed
-[17:56:27]Program started
-[18:00:57]Program started
-[18:01:02]grass of type STRAWBERRY created
-[18:01:05]grass of type STRAWBERRY removed
-[18:02:19]Program started
-[18:02:41]Program started
-[18:02:47]grass of type STRAWBERRY created
-[18:02:48]grass of type RASPBERRY created
-[18:02:52]grass of type RASPBERRY removed
-[18:02:58]grass of type STRAWBERRY removed
-[18:03:22]grass of type STRAWBERRY created
-[18:13:06]Program started
-[18:13:13]grass of type STRAWBERRY created
-[18:13:15]grass of type STRAWBERRY removed
-[18:15:05]Program started
-[18:15:37]Program started
-[18:15:45]grass of type STRAWBERRY created
-[18:15:58]grass of type STRAWBERRY removed
-[18:16:28]Program started
-[18:16:42]grass of type RASPBERRY created
-[18:17:02]grass of type RASPBERRY removed
-[18:17:48]Program started
-[18:17:54]grass of type STRAWBERRY created
-[18:17:59]grass of type STRAWBERRY removed
-[18:18:10]grass of type RASPBERRY created
-[18:18:14]grass of type BLUEBERRY created
-[18:18:20]grass of type RASPBERRY removed
-[18:18:39]Program started
-[18:18:46]Program started
-[18:18:53]grass of type STRAWBERRY created
-[18:18:58]grass of type BLUEBERRY created
-[18:19:02]grass of type BLUEBERRY removed
-[18:19:05]grass of type STRAWBERRY removed
-[18:19:08]grass of type STRAWBERRY created
-[18:19:11]grass of type STRAWBERRY removed
+[19:01:14]Program started
+[19:01:24]tree of type PINE created
+[19:01:26]tree of type OAK created
+[19:01:29]tree of type OAK removed
+[19:01:31]tree of type PINE removed
+[19:03:06]Program started
+[19:03:51]Program started
+[19:03:55]tree of type PINE created
+[19:03:56]tree of type OAK created
+[19:03:58]tree of type PINE removed
+[19:04:01]tree of type OAK removed
+[19:04:04]Program ended
+[19:11:39]Program started
+[19:11:43]tree of type PINE created
+[19:11:45]tree of type OAK created
+[19:11:47]tree of type BIRCH created
+[19:11:49]tree of type PINE removed
+[19:11:52]tree of type OAK removed
+[19:11:54]tree of type BIRCH removed
+[19:11:58]Program ended
