@@ -7,6 +7,11 @@ public class Herbivorous extends Animal {
 		super();
 		this.mSize = size;
 		mEatableType = etype;
+		Forest.addHerbivorousToForest(this);
+	}
+
+	public GrassType getEatableType() {
+		return mEatableType;
 	}
 
 	//TODO добавить поедание деревьев
@@ -20,5 +25,10 @@ public class Herbivorous extends Animal {
 		} else {
 			System.out.println("No food");
 		}
+	}
+
+	@Override
+	public void killAnimal() {
+		Forest.removeHerbivorousFromForest(mId);
 	}
 }

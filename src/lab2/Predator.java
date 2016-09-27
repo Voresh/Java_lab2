@@ -5,6 +5,7 @@ public class Predator extends Animal {
 	public Predator(int size) {
 		super();
 		this.mSize = size;
+		Forest.addPredatorToForest(this);
 	}
 	
 	@Override
@@ -18,4 +19,9 @@ public class Predator extends Animal {
 			System.out.println("No food");
 		}
 	}
+
+	@Override
+    public void killAnimal() {
+        Forest.removePredatorFromForest(mId);
+    }
 }

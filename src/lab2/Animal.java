@@ -17,11 +17,11 @@ public abstract class Animal {
 	}
 
 	public Animal() {
-		Forest.addAnimalToForest(this);
+		//Forest.addAnimalToForest(this);
 	}
 	
 	public void killAnimal() {
-		Forest.removeAnimalFromForest(mId);
+		//Forest.removeAnimalFromForest(mId);
 	}
 
 	public abstract void searchForFood();

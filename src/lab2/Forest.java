@@ -7,9 +7,7 @@ import menu.elements.creators.GrassCreatorElement;
 import menu.elements.creators.HerbivorousCreatorElement;
 import menu.elements.creators.PredatorCreatorElement;
 import menu.elements.creators.TreeCreatorElement;
-import menu.elements.other.KillGrassElement;
-import menu.elements.other.KillTreeElement;
-import menu.elements.other.SwitchMenuElement;
+import menu.elements.other.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -25,13 +23,16 @@ import java.util.Scanner;
    Необходимо учесть, что травоядные питаются только определенным видом растений, а хищники могут съесть только животных меньше себя.
  */
 public class Forest {
-	private static ArrayList<Animal> sAnimals = new ArrayList<Animal>();
+    private static ArrayList<Predator> sPredators = new ArrayList<Predator>();
+    private static ArrayList<Herbivorous> sHerbivorous = new ArrayList<Herbivorous>();
 	private static ArrayList<Grass> sGrass = new ArrayList<Grass>();
     private static ArrayList<Tree> sTrees = new ArrayList<Tree>();
 
 	private static int sCurrentAnimalId = 0;
 	private static int sCurrentGrassId = 0;
     private static int sCurrentTreeId = 0;
+    private static int sCurrentPredatorId = 0;
+    private static int sCurrentHerbivorousId = 0;
 
     private static ForestDataBase dataBase = new ForestDataBase();
 	private static ForestLogger logger = new ForestLogger();
@@ -106,10 +107,6 @@ public class Forest {
         }
     }
 
-	public static ArrayList<Grass> getsGrass() {
-		return sGrass;
-	}
-
 	public static Grass searchForGrassOfType(GrassType type){
 		for (Grass grass : sGrass){
 			if (grass.getType() == type){
@@ -120,22 +117,36 @@ public class Forest {
 	}
 	
 	public static Animal searchForAnimalsWithSizeLess(int size){
-		for (Animal animal : sAnimals){
+		for (Animal animal : sPredators){
 			if (animal.getSize() < size){
 				return animal;
 			}
 		}
+        for (Animal animal : sHerbivorous){
+            if (animal.getSize() < size){
+                return animal;
+            }
+        }
 		return null;
 	}
 
-	public static void removeAnimalFromForest(int id){
-		for(int i=0; i < sAnimals.size(); i++) {
-			if (sAnimals.get(i).getId() == id)
+	public static void removePredatorFromForest(int id){
+		for(int i=0; i < sPredators.size(); i++) {
+			if (sPredators.get(i).getId() == id)
 			{
-				sAnimals.remove(i);
+				sPredators.remove(i);
 			}
 		}
 	}
+
+    public static void removeHerbivorousFromForest(int id){
+        for(int i=0; i < sHerbivorous.size(); i++) {
+            if (sHerbivorous.get(i).getId() == id)
+            {
+                sHerbivorous.remove(i);
+            }
+        }
+    }
 
 	public static void removeGrassFromForest(int id){
 		
@@ -169,21 +180,29 @@ public class Forest {
 
     public static void addTreeToForest(Tree tree) {
         sTrees.add(tree);
-        tree.setId(sCurrentGrassId);
+        tree.setId(sCurrentTreeId);
         sCurrentTreeId++;
         logger.writeOtherMessage("tree of type " + tree.getType().toString() +  " created");
         createTreeMenu(tree);
     }
 	
-	public static void addAnimalToForest(Animal animal) {
-		sAnimals.add(animal);
-		animal.setId(sCurrentAnimalId);
-		sCurrentAnimalId++;
+	public static void addPredatorToForest(Predator predator) {
+		sPredators.add(predator);
+		predator.setId(sCurrentPredatorId);
+		sCurrentPredatorId++;
+        createPredatorMenu(predator);
 	}
+
+    public static void addHerbivorousToForest(Herbivorous herbivorous) {
+        sHerbivorous.add(herbivorous);
+        herbivorous.setId(sCurrentHerbivorousId);
+        sCurrentHerbivorousId++;
+        createHerbivorousMenu(herbivorous);
+    }
 
     private static void createGrassMenu(Grass grass) {
         String typeName = grass.getType().toString().toLowerCase();
-        String name = typeName + " " + grass.getId();
+        String name = typeName + " (" + grass.getId() + ")";
 
         Menu grassMenu = new Menu(name, grassMainMenu);
         SwitchMenuElement grassSwitchElement = new SwitchMenuElement(name, grassMenu);
@@ -193,11 +212,33 @@ public class Forest {
 
     private static void createTreeMenu(Tree tree) {
         String typeName = tree.getType().toString().toLowerCase();
-        String name = typeName + " " + tree.getId();
+        String name = typeName + " (" + tree.getId() + ")";
 
         Menu treeMenu = new Menu(name, treesMainMenu);
         SwitchMenuElement treeSwitchElement = new SwitchMenuElement(name, treeMenu);
         treesMainMenu.AddMenuElement(treeSwitchElement);
         treeMenu.AddMenuElement(new KillTreeElement("remove", tree, treeSwitchElement, treesMainMenu));
+    }
+
+    private static void createPredatorMenu(Predator predator) {
+        String typeName = "predator of size " + predator.getSize();
+        String name = typeName + " (" + predator.getId() + ")";
+
+        Menu predatorMenu = new Menu(name, predatorsMainMenu);
+        SwitchMenuElement predatorSwitchElement = new SwitchMenuElement(name, predatorMenu);
+        predatorsMainMenu.AddMenuElement(predatorSwitchElement);
+        predatorMenu.AddMenuElement(new KillPredatorElement("remove", predator, predatorSwitchElement, predatorsMainMenu));
+        predatorMenu.AddMenuElement(new PredatorSearchForFoodElement("search for food", predator));
+    }
+
+    private static void createHerbivorousMenu(Herbivorous herbivorous) {
+        String typeName = "herbivorous of size " + herbivorous.getSize() + " eating " + herbivorous.getEatableType().toString().toLowerCase();
+        String name = typeName + " (" + herbivorous.getId() + ")";
+
+        Menu herbivorousMenu = new Menu(name, herbivorousMainMenu);
+        SwitchMenuElement herbivorousSwitchElement = new SwitchMenuElement(name, herbivorousMenu);
+        herbivorousMainMenu.AddMenuElement(herbivorousSwitchElement);
+        herbivorousMenu.AddMenuElement(new KillHerbivorousElement("remove", herbivorous, herbivorousSwitchElement, herbivorousMainMenu));
+        herbivorousMenu.AddMenuElement(new HerbivorousSearchForFoodElement("search for food", herbivorous));
     }
 }
