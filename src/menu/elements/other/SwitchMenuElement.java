@@ -1,6 +1,7 @@
-package menu;
+package menu.elements.other;
 
 import lab2.Forest;
+import menu.Menu;
 
 /**
  * Created by v on 26.09.16.

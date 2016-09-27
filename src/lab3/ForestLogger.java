@@ -16,7 +16,7 @@ public class ForestLogger {
         createFileIfNotExists();
     }
 
-    public void createFileIfNotExists(){
+    public void createFileIfNotExists() {
         File logDir = new File(logFileDirName);
         logDir.mkdir();
 

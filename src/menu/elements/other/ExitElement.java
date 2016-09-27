@@ -1,4 +1,4 @@
-package menu;
+package menu.elements.other;
 
 /**
  * Created by vl on 9/21/2016.

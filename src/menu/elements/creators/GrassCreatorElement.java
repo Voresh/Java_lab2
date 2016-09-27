@@ -1,13 +1,15 @@
-package menu;
+package menu.elements.creators;
 
 import lab2.GrassType;
 import lab2.Grass;
+import menu.elements.other.MenuElement;
+
 import java.util.Scanner;
 
 /**
  * Created by v on 27.09.16.
  */
-public class GrassCreatorElement extends MenuElement{
+public class GrassCreatorElement extends MenuElement {
 
     public GrassCreatorElement(String name) {
         super(name);

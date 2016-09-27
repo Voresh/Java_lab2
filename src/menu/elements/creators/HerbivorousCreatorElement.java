@@ -1,7 +1,8 @@
-package menu;
+package menu.elements.creators;
 
 import lab2.GrassType;
 import lab2.Herbivorous;
+import menu.elements.other.MenuElement;
 
 import java.util.Scanner;
 /**

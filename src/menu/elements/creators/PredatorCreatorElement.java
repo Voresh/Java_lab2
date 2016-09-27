@@ -1,6 +1,7 @@
-package menu;
+package menu.elements.creators;
 
 import lab2.Predator;
+import menu.elements.other.MenuElement;
 
 import java.util.Scanner;
 

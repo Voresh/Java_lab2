@@ -1,5 +1,9 @@
 package menu;
 
+import menu.elements.other.ExitElement;
+import menu.elements.other.MenuElement;
+import menu.elements.other.SwitchMenuElement;
+
 import java.util.ArrayList;
 
 public class Menu {
@@ -10,6 +14,8 @@ public class Menu {
 
     private Menu lastMenu = null;
     private MenuElement exitElement = null;
+
+    private int currentIndex = 0;
 
     public Menu() {
         createExitElement();
@@ -32,7 +38,7 @@ public class Menu {
         createExitElement();
     }
 
-    public Menu(String name,String description, Menu lastMenu) {
+    public Menu(String name, String description, Menu lastMenu) {
         this.name = name;
         this.description = description;
         this.lastMenu = lastMenu;
@@ -43,7 +49,7 @@ public class Menu {
         return description;
     }
 
-    public void createExitElement(){
+    public void createExitElement() {
         if (lastMenu != null) {
             exitElement = new SwitchMenuElement("back", lastMenu);
         } else {
@@ -57,9 +63,20 @@ public class Menu {
 
     public void AddMenuElement(MenuElement element) {
         elements.add(element);
+        element.setId(currentIndex);
+        currentIndex++;
     }
 
-    public void printMenuElements(){
+    public void RemoveMenuElement(int id) {
+        for(int i=0; i < elements.size(); i++) {
+            if (elements.get(i).getId() == id)
+            {
+                elements.remove(i);
+            }
+        }
+    }
+
+    public void printMenuElements() {
         int i = 1;
         for (MenuElement element : elements) {
             System.out.println(i + ") " + element.getName());
@@ -69,15 +86,12 @@ public class Menu {
     }
 
     public void executeElement(int id) {
-        if( id < elements.size()) {
+        if (id < elements.size()) {
             elements.get(id).Execute();
-        }
-        else
-        {
-            if (id == elements.size())
-            {
+        } else {
+            if (id == elements.size()) {
                 exitElement.Execute();
-            } else  {
+            } else {
                 System.out.println("no such variant... canceled");
             }
         }

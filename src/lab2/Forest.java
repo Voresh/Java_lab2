@@ -3,6 +3,11 @@ package lab2;
 import lab3.ForestDataBase;
 import lab3.ForestLogger;
 import menu.*;
+import menu.elements.creators.GrassCreatorElement;
+import menu.elements.creators.HerbivorousCreatorElement;
+import menu.elements.creators.PredatorCreatorElement;
+import menu.elements.other.KillGrassElement;
+import menu.elements.other.SwitchMenuElement;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,7 +34,7 @@ public class Forest {
 
     private static Menu currentMenu;
     private static Menu plantMenu;
-    private static Menu grassMenu;
+    private static Menu grassMainMenu;
 	
 	public static void main(String[] args) {
 		logger.writeProgramStart();
@@ -58,9 +63,9 @@ public class Forest {
         currentMenu.AddMenuElement(new SwitchMenuElement("animals", animalMenu));
 
         plantMenu = new Menu("plants",mainMenu);
-        grassMenu = new Menu("grass", plantMenu);
-        grassMenu.AddMenuElement(new GrassCreatorElement("create grass"));
-        plantMenu.AddMenuElement(new SwitchMenuElement("grass", grassMenu));
+        grassMainMenu = new Menu("grass", plantMenu);
+        grassMainMenu.AddMenuElement(new GrassCreatorElement("create grass"));
+        plantMenu.AddMenuElement(new SwitchMenuElement("grass", grassMainMenu));
 
         currentMenu.AddMenuElement(new SwitchMenuElement("plants", plantMenu));
     }
@@ -134,7 +139,7 @@ public class Forest {
 		grass.setId(sCurrentGrassId);
 		sCurrentGrassId++;
 		logger.writeOtherMessage("grass of type " + grass.getType().toString() +  " created");
-        createPlantSubmenu(grass);
+        createGrassMenu(grass);
 	}
 	
 	public static void addAnimalToForest(Animal animal) {
@@ -143,11 +148,25 @@ public class Forest {
 		sCurrentAnimalId++;
 	}
 
-	private static void createPlantSubmenu(Grass grass) {
+	public static void addHerbivorousToForest(Animal animal) {
+
+    }
+
+    private static void createGrassMenu(Grass grass) {
         String typeName = grass.getType().toString().toLowerCase();
         String description = "id: " + grass.getId() + "\n" + "type: " + typeName;
 
-        Menu currGrassMenu = new Menu("current grass menu",description, grassMenu);
-        grassMenu.AddMenuElement(new SwitchMenuElement(typeName + " grass", currGrassMenu));
+        Menu grassMenu = new Menu("current grass menu", description, grassMainMenu);
+        SwitchMenuElement grassSwitchElement = new SwitchMenuElement(typeName + " grass", grassMenu);
+        grassMenu.AddMenuElement(new KillGrassElement("remove grass", grass,grassSwitchElement, grassMainMenu));
+        grassMainMenu.AddMenuElement(grassSwitchElement);
+
+       // grassMenus.add(grassMenu);
+    }
+
+    public static void RemoveGrassMenu(SwitchMenuElement element, Menu ownerMenu) {
+        //grassMenus.remove(menu);
+        SwitchToMenu(ownerMenu);
+        ownerMenu.RemoveMenuElement(element.getId());
     }
 }
