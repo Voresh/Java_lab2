@@ -6,11 +6,35 @@ public class Menu {
     private ArrayList<MenuElement> elements = new ArrayList<MenuElement>();
     private String name = "default";
 
-    public Menu(String name) {
-        this.name = name;
-    }
+    private Menu lastMenu = null;
+    private MenuElement exitElement = null;
 
     public Menu() {
+        createExitElement();
+    }
+
+    public Menu(String name) {
+        this.name = name;
+        createExitElement();
+    }
+
+    public Menu(Menu lastMenu) {
+        this.lastMenu = lastMenu;
+        createExitElement();
+    }
+
+    public Menu(String name, Menu lastMenu) {
+        this.name = name;
+        this.lastMenu = lastMenu;
+        createExitElement();
+    }
+
+    public void createExitElement(){
+        if (lastMenu != null) {
+            exitElement = new SwitchMenuElement("back", lastMenu);
+        } else {
+            exitElement = new ExitElement();
+        }
     }
 
     public String getName() {
@@ -24,14 +48,24 @@ public class Menu {
     public void printMenuElements(){
         int i = 1;
         for (MenuElement element : elements) {
-            System.out.println(i + "} " + element.getName());
+            System.out.println(i + ") " + element.getName());
             i++;
         }
+        System.out.println(i + ") " + exitElement.getName());
     }
 
     public void executeElement(int id) {
         if( id < elements.size()) {
             elements.get(id).Execute();
+        }
+        else
+        {
+            if (id == elements.size())
+            {
+                exitElement.Execute();
+            } else  {
+                System.out.println("no such variant... canceled");
+            }
         }
     }
 }

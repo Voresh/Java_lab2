@@ -1,5 +1,7 @@
 package menu;
 
+import lab2.Forest;
+
 /**
  * Created by v on 26.09.16.
  */
@@ -17,6 +19,6 @@ public class SwitchMenuElement extends MenuElement {
 
     @Override
     public void Execute() {
-        MenuManager.SwitchToMenu(target);
+        Forest.SwitchToMenu(target);
     }
 }

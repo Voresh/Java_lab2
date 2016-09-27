@@ -2,8 +2,10 @@ package lab2;
 
 import lab3.ForestDataBase;
 import lab3.ForestLogger;
+import menu.*;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
  * Вариант №2.
@@ -18,89 +20,75 @@ import java.util.ArrayList;
 public class Forest {
 	private static ArrayList<Animal> sAnimals = new ArrayList<Animal>();
 	private static ArrayList<Grass> sGrass = new ArrayList<Grass>();
+
 	private static int sCurrentAnimalId = 0;
 	private static int sCurrentGrassId = 0;
+
+    private static ForestDataBase dataBase = new ForestDataBase();
+	private static ForestLogger logger = new ForestLogger();
+
+    private static Menu currentMenu;
+    private static Menu plantMenu;
+    private static Menu grassMenu;
 	
 	public static void main(String[] args) {
-		ForestLogger log = new ForestLogger();
-		ForestDataBase db = new ForestDataBase();
+		logger.writeProgramStart();
 
-		log.writeProgramStart();
+        createMenu();
+        getUserMenuInput();
 
-		createTestPlants();
-		createTestAnimals();
-		
-		System.out.println("Initial forest: ");
+		logger.writeProgramEnd();
+	}
 
-		displayForestGrass();
-		displayForestAnimals();
-		
-		runHerbivorousTest(0);
-		runPredatorTest(2);
+	private static void createMenu()
+    {
+        Menu mainMenu = new Menu("main");
+        currentMenu = mainMenu;
 
-		log.writeProgramEnd();
-	}
-	
-	public static void runPredatorTest(int index){
-		System.out.println("___PREDATOR_TEST___");
-		Animal testPredator = sAnimals.get(index);
-		testPredator.searchForFood();
-		
-		displayForestAnimals();
+        Menu animalMenu = new Menu("animals", mainMenu);
 
-		testPredator.searchForFood();
-		
-		displayForestAnimals();
-		System.out.println("___PREDATOR_TEST___");
+        Menu predatorMenu = new Menu("predators", animalMenu);
+        predatorMenu.AddMenuElement(new PredatorCreatorElement("create predator"));
+        Menu herbivorousMenu = new Menu("herbivorous", animalMenu);
+        herbivorousMenu.AddMenuElement(new HerbivorousCreatorElement("create herbivorous"));
+
+        animalMenu.AddMenuElement(new SwitchMenuElement("predators", predatorMenu));
+        animalMenu.AddMenuElement(new SwitchMenuElement("herbivorous", herbivorousMenu));
+
+        currentMenu.AddMenuElement(new SwitchMenuElement("animals", animalMenu));
+
+        plantMenu = new Menu("plants",mainMenu);
+        grassMenu = new Menu("grass", plantMenu);
+        grassMenu.AddMenuElement(new GrassCreatorElement("create grass"));
+        plantMenu.AddMenuElement(new SwitchMenuElement("grass", grassMenu));
+
+        currentMenu.AddMenuElement(new SwitchMenuElement("plants", plantMenu));
+    }
+
+    public static void SwitchToMenu(Menu menu) {
+        currentMenu = menu;
+    }
+
+    private static void getUserMenuInput() {
+        Scanner scanner  = new Scanner(System.in);
+        while (currentMenu != null) {
+            System.out.println("====================");
+            System.out.println("| Menu: " + currentMenu.getName()+" |");
+            currentMenu.printMenuElements();
+            System.out.print("enter your choice: ");
+            if (scanner.hasNextInt()) {
+                currentMenu.executeElement(scanner.nextInt() - 1);
+            } else {
+                System.out.println("not int... exit");
+                System.exit(0);
+            }
+        }
+    }
+
+	public static ArrayList<Grass> getsGrass() {
+		return sGrass;
 	}
-	
-	public static void runHerbivorousTest(int index){
-		System.out.println("___HERBIVOROUS_TEST___");
-		Animal testHerbivorous = sAnimals.get(index);
-		
-		testHerbivorous.searchForFood();
-		
-		displayForestGrass();
-		
-		testHerbivorous.searchForFood();
-		
-		displayForestGrass();
-		System.out.println("___HERBIVOROUS_TEST___");
-	}
-	
-	public static void createTestPlants()
-	{
-		new Grass(GrassType.RASPBERRY);
-		new Grass(GrassType.BLUEBERRY);
-		new Grass(GrassType.RASPBERRY);
-		new Grass(GrassType.STRAWBERRY);
-		
-		new Tree(TreeType.BIRCH);
-		new Tree(TreeType.OAK);
-		new Tree(TreeType.PINE);
-	}
-	
-	public static void createTestAnimals()
-	{
-		new Herbivorous(2, GrassType.RASPBERRY);
-		new Predator(4);
-		new Predator(3);
-	}
-	
-	public static void displayForestGrass() {
-		System.out.println("Current grass: ");
-		for (Grass _grass : sGrass) {
-			System.out.println("Grass " + _grass.getId() + " type of: " + _grass.getType().toString());
-		}
-	}
-	
-	public static void displayForestAnimals() {
-		System.out.println("Current animals: ");
-		for (Animal animal : sAnimals) {
-			System.out.println("Animal " + animal.getId() + " size of: " + animal.mSize);
-		}
-	}
-	
+
 	public static Grass searchForGrassOfType(GrassType type){
 		for (Grass grass : sGrass){
 			if (grass.getType() == type){
@@ -133,6 +121,7 @@ public class Forest {
 		for(int i=0; i < sGrass.size(); i++) {
 			if (sGrass.get(i).getId() == id)
 			{
+                logger.writeOtherMessage("grass of type " + sGrass.get(i).getType().toString() +  " removed");
 				sGrass.remove(i);
 			}
 		}
@@ -142,6 +131,8 @@ public class Forest {
 		sGrass.add(grass);
 		grass.setId(sCurrentGrassId);
 		sCurrentGrassId++;
+		logger.writeOtherMessage("grass of type " + grass.getType().toString() +  " created");
+        createPlantSubmenu(grass);
 	}
 	
 	public static void addAnimalToForest(Animal animal) {
@@ -149,4 +140,13 @@ public class Forest {
 		animal.setId(sCurrentAnimalId);
 		sCurrentAnimalId++;
 	}
+
+	private static void createPlantSubmenu(Grass grass) {
+        String typeName = grass.getType().toString().toLowerCase();
+        Menu currGrassMenu = new Menu("current grass menu", grassMenu);
+        currGrassMenu.AddMenuElement(new MenuElement("id: " + grass.getId()));
+        currGrassMenu.AddMenuElement(new MenuElement("type: " + typeName ));
+
+        grassMenu.AddMenuElement(new SwitchMenuElement(typeName + " grass", currGrassMenu));
+    }
 }

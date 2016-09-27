@@ -39,6 +39,10 @@ public class ForestLogger {
         writeToLog(currentTimeLabel() + "Program ended");
     }
 
+    public void writeOtherMessage(String message) {
+        writeToLog(currentTimeLabel() + message);
+    }
+
     private void writeToLog(String str) {
         BufferedWriter bw = null;
         try {
