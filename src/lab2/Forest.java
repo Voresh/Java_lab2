@@ -10,6 +10,8 @@ import menu.elements.creators.TreeCreatorElement;
 import menu.elements.other.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /*
@@ -28,7 +30,6 @@ public class Forest {
 	private static ArrayList<Grass> sGrass = new ArrayList<Grass>();
     private static ArrayList<Tree> sTrees = new ArrayList<Tree>();
 
-	private static int sCurrentAnimalId = 0;
 	private static int sCurrentGrassId = 0;
     private static int sCurrentTreeId = 0;
     private static int sCurrentPredatorId = 0;
@@ -45,6 +46,11 @@ public class Forest {
     private static Menu treesMainMenu;
     private static Menu predatorsMainMenu;
     private static Menu herbivorousMainMenu;
+
+    private static Map<Integer,Integer> sGrassMenuElementsId = new HashMap<Integer, Integer>();
+    private static Map<Integer,Integer> sTreeMenuElementsId = new HashMap<Integer, Integer>();
+    private static Map<Integer,Integer> sPredatorMenuElementsId = new HashMap<Integer, Integer>();
+    private static Map<Integer,Integer> sHerbivorousMenuElementsId = new HashMap<Integer, Integer>();
 	
 	public static void main(String[] args) {
 		logger.writeProgramStart();
@@ -135,6 +141,7 @@ public class Forest {
 			if (sPredators.get(i).getId() == id)
 			{
 				sPredators.remove(i);
+                predatorsMainMenu.RemoveMenuElement(sPredatorMenuElementsId.get(id));
 			}
 		}
 	}
@@ -144,6 +151,7 @@ public class Forest {
             if (sHerbivorous.get(i).getId() == id)
             {
                 sHerbivorous.remove(i);
+                herbivorousMainMenu.RemoveMenuElement(sHerbivorousMenuElementsId.get(id));
             }
         }
     }
@@ -155,6 +163,7 @@ public class Forest {
 			{
                 logger.writeOtherMessage("grass of type " + sGrass.get(i).getType().toString() +  " removed");
 				sGrass.remove(i);
+                grassMainMenu.RemoveMenuElement(sGrassMenuElementsId.get(id));
 			}
 		}
 	}
@@ -166,6 +175,7 @@ public class Forest {
             {
                 logger.writeOtherMessage("tree of type " + sTrees.get(i).getType().toString() +  " removed");
                 sTrees.remove(i);
+                treesMainMenu.RemoveMenuElement(sTreeMenuElementsId.get(id));
             }
         }
     }
@@ -208,6 +218,7 @@ public class Forest {
         SwitchMenuElement grassSwitchElement = new SwitchMenuElement(name, grassMenu);
         grassMainMenu.AddMenuElement(grassSwitchElement);
         grassMenu.AddMenuElement(new KillGrassElement("remove", grass, grassSwitchElement, grassMainMenu));
+        sGrassMenuElementsId.put(grass.getId(),grassSwitchElement.getId());
     }
 
     private static void createTreeMenu(Tree tree) {
@@ -218,6 +229,7 @@ public class Forest {
         SwitchMenuElement treeSwitchElement = new SwitchMenuElement(name, treeMenu);
         treesMainMenu.AddMenuElement(treeSwitchElement);
         treeMenu.AddMenuElement(new KillTreeElement("remove", tree, treeSwitchElement, treesMainMenu));
+        sTreeMenuElementsId.put(tree.getId(),treeSwitchElement.getId());
     }
 
     private static void createPredatorMenu(Predator predator) {
@@ -229,6 +241,7 @@ public class Forest {
         predatorsMainMenu.AddMenuElement(predatorSwitchElement);
         predatorMenu.AddMenuElement(new KillPredatorElement("remove", predator, predatorSwitchElement, predatorsMainMenu));
         predatorMenu.AddMenuElement(new PredatorSearchForFoodElement("search for food", predator));
+        sPredatorMenuElementsId.put(predator.getId(),predatorSwitchElement.getId());
     }
 
     private static void createHerbivorousMenu(Herbivorous herbivorous) {
@@ -240,5 +253,6 @@ public class Forest {
         herbivorousMainMenu.AddMenuElement(herbivorousSwitchElement);
         herbivorousMenu.AddMenuElement(new KillHerbivorousElement("remove", herbivorous, herbivorousSwitchElement, herbivorousMainMenu));
         herbivorousMenu.AddMenuElement(new HerbivorousSearchForFoodElement("search for food", herbivorous));
+        sHerbivorousMenuElementsId.put(herbivorous.getId(),herbivorousSwitchElement.getId());
     }
 }
