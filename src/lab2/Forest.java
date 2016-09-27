@@ -17,9 +17,9 @@ import java.util.Scanner;
 /*
  * Вариант №2.
  
-   1. Разработать модель леса, в котором присутствуют следующие классы: лес, растения, животные. +
-   Растения подразделяются на деревья и траву различных видов.+ Животные подразделяются на хищников и травоядных различного размера.+
-   2. Реализовать у животного метод поиска в лесу пропитания с последующим поеданием (уничтожением). +
+   1. Разработать модель леса, в котором присутствуют следующие классы: лес, растения, животные.
+   Растения подразделяются на деревья и траву различных видов. Животные подразделяются на хищников и травоядных различного размера.
+   2. Реализовать у животного метод поиска в лесу пропитания с последующим поеданием (уничтожением).
    3. Разработать программу для демонстрации классов.
  
    Необходимо учесть, что травоядные питаются только определенным видом растений, а хищники могут съесть только животных меньше себя.
@@ -100,7 +100,7 @@ public class Forest {
         while (currentMenu != null) {
             System.out.println("====================");
             System.out.println("| Menu: " + currentMenu.getName()+" |");
-            if (currentMenu.getDescription() != "")
+            if (!currentMenu.getDescription().equals(""))
                 System.out.println(currentMenu.getDescription());
             currentMenu.printMenuElements();
             System.out.print("enter your choice: ");
@@ -140,6 +140,7 @@ public class Forest {
 		for(int i=0; i < sPredators.size(); i++) {
 			if (sPredators.get(i).getId() == id)
 			{
+                logger.writeOtherMessage("predator of size " + sPredators.get(i).getSize() +  " removed");
 				sPredators.remove(i);
                 predatorsMainMenu.RemoveMenuElement(sPredatorMenuElementsId.get(id));
 			}
@@ -150,6 +151,8 @@ public class Forest {
         for(int i=0; i < sHerbivorous.size(); i++) {
             if (sHerbivorous.get(i).getId() == id)
             {
+                logger.writeOtherMessage("herbivorous of size " + sHerbivorous.get(i).getSize() +  " eating "
+                        + sHerbivorous.get(i).getEatableType() + " removed");
                 sHerbivorous.remove(i);
                 herbivorousMainMenu.RemoveMenuElement(sHerbivorousMenuElementsId.get(id));
             }
@@ -192,8 +195,8 @@ public class Forest {
         sTrees.add(tree);
         tree.setId(sCurrentTreeId);
         sCurrentTreeId++;
-        logger.writeOtherMessage("tree of type " + tree.getType().toString() +  " created");
         createTreeMenu(tree);
+        logger.writeOtherMessage("tree of type " + tree.getType().toString() +  " created");
     }
 	
 	public static void addPredatorToForest(Predator predator) {
@@ -201,6 +204,7 @@ public class Forest {
 		predator.setId(sCurrentPredatorId);
 		sCurrentPredatorId++;
         createPredatorMenu(predator);
+        logger.writeOtherMessage("predator of size " + predator.getSize() +  " created");
 	}
 
     public static void addHerbivorousToForest(Herbivorous herbivorous) {
@@ -208,6 +212,7 @@ public class Forest {
         herbivorous.setId(sCurrentHerbivorousId);
         sCurrentHerbivorousId++;
         createHerbivorousMenu(herbivorous);
+        logger.writeOtherMessage("herbivorous of size " + herbivorous.getSize() +  " eating " + herbivorous.getEatableType() + " created");
     }
 
     private static void createGrassMenu(Grass grass) {

@@ -17,13 +17,12 @@ public class Herbivorous extends Animal {
 	//TODO добавить поедание деревьев
 	@Override
 	public void searchForFood() {
-		System.out.println("Animal eating " + mEatableType.toString() + ", is searching for food");
 		Grass food = Forest.searchForGrassOfType(mEatableType);
 		if (food != null) {
-			System.out.println("Kill " + food.getId());
+			System.out.println("grass of type " + food.getType() + " eaten");
 			food.killGrass();
 		} else {
-			System.out.println("No food");
+			System.out.println("no food found");
 		}
 	}
 
