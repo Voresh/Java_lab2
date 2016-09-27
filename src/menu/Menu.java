@@ -6,6 +6,8 @@ public class Menu {
     private ArrayList<MenuElement> elements = new ArrayList<MenuElement>();
     private String name = "default";
 
+    private String description = "";
+
     private Menu lastMenu = null;
     private MenuElement exitElement = null;
 
@@ -18,8 +20,9 @@ public class Menu {
         createExitElement();
     }
 
-    public Menu(Menu lastMenu) {
-        this.lastMenu = lastMenu;
+    public Menu(String name, String description) {
+        this.name = name;
+        this.description = description;
         createExitElement();
     }
 
@@ -27,6 +30,17 @@ public class Menu {
         this.name = name;
         this.lastMenu = lastMenu;
         createExitElement();
+    }
+
+    public Menu(String name,String description, Menu lastMenu) {
+        this.name = name;
+        this.description = description;
+        this.lastMenu = lastMenu;
+        createExitElement();
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void createExitElement(){

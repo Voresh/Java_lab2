@@ -74,6 +74,8 @@ public class Forest {
         while (currentMenu != null) {
             System.out.println("====================");
             System.out.println("| Menu: " + currentMenu.getName()+" |");
+            if (currentMenu.getDescription() != "")
+                System.out.println(currentMenu.getDescription());
             currentMenu.printMenuElements();
             System.out.print("enter your choice: ");
             if (scanner.hasNextInt()) {
@@ -143,10 +145,9 @@ public class Forest {
 
 	private static void createPlantSubmenu(Grass grass) {
         String typeName = grass.getType().toString().toLowerCase();
-        Menu currGrassMenu = new Menu("current grass menu", grassMenu);
-        currGrassMenu.AddMenuElement(new MenuElement("id: " + grass.getId()));
-        currGrassMenu.AddMenuElement(new MenuElement("type: " + typeName ));
+        String description = "id: " + grass.getId() + "\n" + "type: " + typeName;
 
+        Menu currGrassMenu = new Menu("current grass menu",description, grassMenu);
         grassMenu.AddMenuElement(new SwitchMenuElement(typeName + " grass", currGrassMenu));
     }
 }
