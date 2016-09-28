@@ -56,12 +56,18 @@ public class Forest {
 		logger.writeProgramStart();
 
         createMenu();
-        dataBase.LoadClassesFromDataBase();
         getUserMenuInput();
 
-        dataBase.SaveClassesToDataBase(sGrass,sTrees,sHerbivorous,sPredators);
         logger.writeProgramEnd();
 	}
+
+	public static void saveForestDataToDataBase() {
+        dataBase.SaveClassesToDataBase(sGrass,sTrees,sHerbivorous,sPredators);
+    }
+
+    public static void loadForestDateFromDataBase() {
+        dataBase.LoadClassesFromDataBase();
+    }
 
 	private static void createMenu()
     {
@@ -78,7 +84,7 @@ public class Forest {
         animalMenu.AddMenuElement(new SwitchMenuElement("predators", predatorsMainMenu));
         animalMenu.AddMenuElement(new SwitchMenuElement("herbivorous", herbivorousMainMenu));
 
-        currentMenu.AddMenuElement(new SwitchMenuElement("animals", animalMenu));
+        mainMenu.AddMenuElement(new SwitchMenuElement("animals", animalMenu));
 
         //plant menu added here
         plantMenu = new Menu("plants",mainMenu);
@@ -90,7 +96,10 @@ public class Forest {
         plantMenu.AddMenuElement(new SwitchMenuElement("grass", grassMainMenu));
         plantMenu.AddMenuElement(new SwitchMenuElement("trees", treesMainMenu));
 
-        currentMenu.AddMenuElement(new SwitchMenuElement("plants", plantMenu));
+        mainMenu.AddMenuElement(new SwitchMenuElement("plants", plantMenu));
+
+        mainMenu.AddMenuElement(new SaveToDataBaseElement("save"));
+        mainMenu.AddMenuElement(new LoadFromDataBaseElement("load"));
     }
 
     public static void SwitchToMenu(Menu menu) {

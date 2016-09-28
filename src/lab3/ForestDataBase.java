@@ -15,7 +15,7 @@ public class ForestDataBase {
 		createStorageFileIfNotExists();
 	}
 
-    public void LoadClassesFromDataBase() {//проверка на наличие аргументов
+    public void LoadClassesFromDataBase() {//проверка на наличие аргументов и возможность других разделителей
         String db = readDataBase();
         String[] classes = db.split("-");
 
