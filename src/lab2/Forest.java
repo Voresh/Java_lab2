@@ -59,6 +59,7 @@ public class Forest {
         dataBase.LoadClassesFromDataBase();
         getUserMenuInput();
 
+        dataBase.SaveClassesToDataBase(sGrass,sTrees,sHerbivorous,sPredators);
         logger.writeProgramEnd();
 	}
 

@@ -3,6 +3,7 @@ package lab3;
 import lab2.*;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ForestDataBase {
@@ -14,26 +15,42 @@ public class ForestDataBase {
 		createStorageFileIfNotExists();
 	}
 
-    public void LoadClassesFromDataBase() {
-        String n = readDataBase();
-        String[] s = n.split("-");
+    public void LoadClassesFromDataBase() {//проверка на наличие аргументов
+        String db = readDataBase();
+        String[] classes = db.split("-");
 
-        int i = 0;
-        for(String str: s) {
-            String[] s2 = str.split("_");
-            if (s2[0].equals("g")) {
-                new Grass(GrassType.values()[Integer.parseInt(s2[1])]);
-            } else if (s2[0].equals("h")) {
-                new Herbivorous(Integer.parseInt(s2[1]),GrassType.values()[Integer.parseInt(s2[2])]);
-            } else if (s2[0].equals("p")) {
-                new Predator(Integer.parseInt(s2[1]));
-            } else if (s2[0].equals("t")) {
-                new Tree(TreeType.values()[Integer.parseInt(s2[1])]);
+        for(String _class: classes) {
+            String[] classFields = _class.split("_");
+            if (classFields[0].equals("g")) {
+                new Grass(GrassType.values()[Integer.parseInt(classFields[1])]);
+            } else if (classFields[0].equals("h")) {
+                new Herbivorous(Integer.parseInt(classFields[1]),GrassType.values()[Integer.parseInt(classFields[2])]);
+            } else if (classFields[0].equals("p")) {
+                new Predator(Integer.parseInt(classFields[1]));
+            } else if (classFields[0].equals("t")) {
+                new Tree(TreeType.values()[Integer.parseInt(classFields[1])]);
             } else {
                 System.out.println("failed");
             }
-            i++;
         }
+    }
+
+    public void SaveClassesToDataBase(ArrayList<Grass> grass, ArrayList<Tree> trees, ArrayList<Herbivorous> herbivorous, ArrayList<Predator> predators) {
+        String db = "";
+        int i = 0;
+        for (Grass _grass: grass) {
+            db = db.concat("g_").concat(Integer.toString(_grass.getType().ordinal())).concat("-");
+        }
+        for (Tree tree: trees) {
+            db = db.concat("t_").concat(Integer.toString(tree.getType().ordinal())).concat("-");
+        }
+        for (Herbivorous _herbivorous: herbivorous) {
+            db = db.concat("h_").concat(Integer.toString(_herbivorous.getSize())).concat("_").concat(Integer.toString(_herbivorous.getEatableType().ordinal())).concat("-");
+        }
+        for (Predator predator: predators) {
+            db = db.concat("p_").concat(Integer.toString(predator.getSize())).concat("-");
+        }
+        writeDataBase(db);
     }
 
     public String readDataBase() {
