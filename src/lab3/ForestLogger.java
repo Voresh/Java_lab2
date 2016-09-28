@@ -13,10 +13,10 @@ public class ForestLogger {
     private String fileSeparator = System.getProperty("file.separator");
 
     public ForestLogger() {
-        createFileIfNotExists();
+        createLogFileIfNotExists();
     }
 
-    public void createFileIfNotExists() {
+    public void createLogFileIfNotExists() {
         File logDir = new File(logFileDirName);
         logDir.mkdir();
 
@@ -44,17 +44,16 @@ public class ForestLogger {
     }
 
     private void writeToLog(String str) {
-        BufferedWriter bw = null;
+        BufferedWriter bufferedWriter = null;
         try {
-            bw = new BufferedWriter(new FileWriter(logFileDirName + fileSeparator + logFileFullName, true));
-            bw.write(str);
-            bw.newLine();
-            bw.flush();
+            bufferedWriter = new BufferedWriter(new FileWriter(logFileDirName + fileSeparator + logFileFullName, true));
+            bufferedWriter.write(str + "\n");
+            bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (bw != null) try {
-                bw.close();
+            if (bufferedWriter != null) try {
+                bufferedWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

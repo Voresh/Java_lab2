@@ -56,6 +56,7 @@ public class Forest {
 		logger.writeProgramStart();
 
         createMenu();
+        dataBase.LoadClassesFromDataBase();
         getUserMenuInput();
 
         logger.writeProgramEnd();
