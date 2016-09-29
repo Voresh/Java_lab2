@@ -54,3 +54,71 @@
 [12:10:22]herbivorous of size 5 eating RASPBERRY created
 [12:10:44]predator of size 10 removed
 [12:10:55]herbivorous of size 5 eating RASPBERRY removed
+[21:36:57]Program started
+[21:36:59]Program ended
+[21:39:00]Program started
+[21:39:04]predator of size 2 created
+[21:39:05]predator of size 1 created
+[21:39:26]Program ended
+[21:39:29]Program started
+[21:39:35]herbivorous of size 1 eating STRAWBERRY created
+[21:39:39]herbivorous of size 1 eating STRAWBERRY removed
+[21:40:27]Program started
+[21:40:29]predator of size 2 created
+[21:40:29]predator of size 1 created
+[21:40:38]herbivorous of size 1 eating STRAWBERRY created
+[21:40:43]herbivorous of size 1 eating STRAWBERRY created
+[21:40:43]predator of size 2 created
+[21:40:43]predator of size 1 created
+[21:40:44]herbivorous of size 1 eating STRAWBERRY created
+[21:40:44]predator of size 2 created
+[21:40:44]predator of size 1 created
+[21:40:50]Program ended
+[21:41:34]Program started
+[21:41:37]Program ended
+[21:41:43]Program started
+[21:41:45]herbivorous of size 1 eating STRAWBERRY created
+[21:41:45]predator of size 2 created
+[21:41:45]predator of size 1 created
+[21:41:57]Program ended
+[21:41:59]Program started
+[21:42:05]herbivorous of size 1 eating STRAWBERRY created
+[21:42:10]herbivorous of size 1 eating STRAWBERRY removed
+[21:46:18]Program started
+[21:46:22]grass of type BLUEBERRY created
+[21:46:25]grass of type BLUEBERRY removed
+[21:46:30]Program started
+[21:46:35]herbivorous of size 1 eating STRAWBERRY created
+[21:46:37]herbivorous of size 1 eating STRAWBERRY removed
+[21:58:49]Program started
+[21:58:51]herbivorous of size 1 eating STRAWBERRY created
+[21:58:51]predator of size 2 created
+[21:58:51]predator of size 1 created
+[21:59:01]grass of type BLUEBERRY created
+[21:59:02]grass of type STRAWBERRY created
+[21:59:06]grass of type BLUEBERRY removed
+[21:59:06]herbivorous of size 1 eating STRAWBERRY created
+[21:59:06]predator of size 2 created
+[21:59:06]predator of size 1 created
+[22:01:13]Program started
+[22:01:18]grass of type STRAWBERRY created
+[22:01:23]grass of type STRAWBERRY removed
+[22:02:03]Program started
+[22:02:05]herbivorous of size 1 eating STRAWBERRY created
+[22:02:05]predator of size 2 created
+[22:02:05]predator of size 1 created
+[22:02:14]grass of type BLUEBERRY created
+[22:02:18]grass of type BLUEBERRY removed
+[22:12:30]Program started
+[22:13:12]Program started
+[22:13:17]grass of type STRAWBERRY created
+[22:13:20]tree of type OAK created
+[22:13:23]herbivorous of size 1 eating STRAWBERRY created
+[22:13:23]predator of size 2 created
+[22:13:23]predator of size 1 created
+[22:13:31]tree of type OAK created
+[22:13:32]tree of type PINE created
+[22:13:33]tree of type OAK created
+[22:13:44]herbivorous of size 1 eating STRAWBERRY created
+[22:13:44]predator of size 2 created
+[22:13:44]predator of size 1 created

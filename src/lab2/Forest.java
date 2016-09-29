@@ -9,10 +9,7 @@ import menu.elements.creators.PredatorCreatorElement;
 import menu.elements.creators.TreeCreatorElement;
 import menu.elements.other.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /*
  * Вариант №2.
@@ -66,6 +63,7 @@ public class Forest {
     }
 
     public static void loadForestDateFromDataBase() {
+        clearForest();
         sDataBase.loadClassesFromDataBase();
     }
 
@@ -217,6 +215,28 @@ public class Forest {
         sCurrentHerbivorousId++;
         createHerbivorousMenu(herbivorous);
         sLogger.writeOtherMessage("herbivorous of size " + herbivorous.getSize() + " eating " + herbivorous.getEatableType() + " created");
+    }
+
+    public static void clearForest() {
+        for (Grass grass : sGrass) {
+            sGrassMainMenu.removeMenuElement(sGrassMenuElementsId.get(grass.getId()));
+        }
+        sGrass.clear();
+
+        for (Tree tree : sTrees) {
+            sTreesMainMenu.removeMenuElement(sTreeMenuElementsId.get(tree.getId()));
+        }
+        sTrees.clear();
+
+        for (Herbivorous herbivorous : sHerbivorous) {
+            sHerbivorousMainMenu.removeMenuElement(sHerbivorousMenuElementsId.get(herbivorous.getId()));
+        }
+        sHerbivorous.clear();
+
+        for (Predator predator : sPredators) {
+            sPredatorsMainMenu.removeMenuElement(sPredatorMenuElementsId.get(predator.getId()));
+        }
+        sPredators.clear();
     }
 
     private static void createGrassMenu(Grass grass) {
