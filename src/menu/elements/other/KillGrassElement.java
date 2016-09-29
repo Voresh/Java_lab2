@@ -4,32 +4,30 @@ import lab2.Forest;
 import lab2.Grass;
 import menu.Menu;
 
-import java.util.Scanner;
-
 public class KillGrassElement extends MenuElement {
-    private Grass grass = null;
-    private SwitchMenuElement element = null;
-    private Menu ownerMenu = null;
+    private Grass mGrass = null;
+    private SwitchMenuElement mElement = null;
+    private Menu mOwnerMenu = null;
 
     public KillGrassElement(String name, Grass grass, SwitchMenuElement element, Menu ownerMenu) {
         super(name);
-        this.grass = grass;
-        this.element = element;
-        this.ownerMenu = ownerMenu;
+        this.mGrass = grass;
+        this.mElement = element;
+        this.mOwnerMenu = ownerMenu;
     }
 
     @Override //добавить подтверждение удаления
-    public void Execute() {
-        /*System.out.println("remove grass? [y/n]: ");
+    public void execute() {
+        /*System.out.println("remove mGrass? [y/n]: ");
         Scanner scanner  = new Scanner(System.in);
 
         if (scanner.hasNext())
         {
 
             if (scanner.next() == "y") {
-                grass.killGrass();
+                mGrass.killGrass();
                 Forest.RemoveGrassMenu(menu);
-                System.out.println("grass removed succesfully...");
+                System.out.println("mGrass removed succesfully...");
             } else if (scanner.next() == "n") {
                 System.out.println("canceled... ");
             } else {
@@ -37,8 +35,8 @@ public class KillGrassElement extends MenuElement {
             }
 
         }*/
-        grass.killGrass();
-        Forest.SwitchToMenu(ownerMenu);
-        ownerMenu.RemoveMenuElement(element.getId());
+        mGrass.killGrass();
+        Forest.switchToMenu(mOwnerMenu);
+        mOwnerMenu.removeMenuElement(mElement.getId());
     }
 }

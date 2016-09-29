@@ -15,9 +15,9 @@ public class PredatorCreatorElement extends MenuElement {
     }
 
     @Override
-    public void Execute() {
+    public void execute() {
         System.out.print("enter predator size or random symbol to cancel: ");
-        Scanner scanner  = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         if (scanner.hasNextInt()) {
             int inputInt = scanner.nextInt();

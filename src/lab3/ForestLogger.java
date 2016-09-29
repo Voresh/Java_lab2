@@ -8,19 +8,19 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class ForestLogger {
-    private String logFileFullName = "forest.log";
-    private String logFileDirName = "logs";
-    private String fileSeparator = System.getProperty("file.separator");
+    private String mLogFileFullName = "forest.log";
+    private String mLogFileDirName = "logs";
+    private String mFileSeparator = System.getProperty("file.separator");
 
     public ForestLogger() {
         createLogFileIfNotExists();
     }
 
     public void createLogFileIfNotExists() {
-        File logDir = new File(logFileDirName);
+        File logDir = new File(mLogFileDirName);
         logDir.mkdir();
 
-        File logFile = new File(logFileDirName + fileSeparator + logFileFullName);
+        File logFile = new File(mLogFileDirName + mFileSeparator + mLogFileFullName);
 
         if (!logFile.exists()) {
             try {
@@ -46,7 +46,7 @@ public class ForestLogger {
     private void writeToLog(String str) {
         BufferedWriter bufferedWriter = null;
         try {
-            bufferedWriter = new BufferedWriter(new FileWriter(logFileDirName + fileSeparator + logFileFullName, true));
+            bufferedWriter = new BufferedWriter(new FileWriter(mLogFileDirName + mFileSeparator + mLogFileFullName, true));
             bufferedWriter.write(str + "\n");
             bufferedWriter.flush();
         } catch (IOException e) {

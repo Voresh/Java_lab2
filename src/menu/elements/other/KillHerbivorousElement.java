@@ -8,21 +8,21 @@ import menu.Menu;
  * Created by v on 27.09.16.
  */
 public class KillHerbivorousElement extends MenuElement {
-    private Herbivorous herbivorous = null;
-    private SwitchMenuElement element = null;
-    private Menu ownerMenu = null;
+    private Herbivorous mHerbivorous = null;
+    private SwitchMenuElement mElement = null;
+    private Menu mOwnerMenu = null;
 
     public KillHerbivorousElement(String name, Herbivorous herbivorous, SwitchMenuElement element, Menu ownerMenu) {
         super(name);
-        this.herbivorous = herbivorous;
-        this.element = element;
-        this.ownerMenu = ownerMenu;
+        this.mHerbivorous = herbivorous;
+        this.mElement = element;
+        this.mOwnerMenu = ownerMenu;
     }
 
     @Override
-    public void Execute() {
-        herbivorous.killAnimal();
-        Forest.SwitchToMenu(ownerMenu);
-        ownerMenu.RemoveMenuElement(element.getId());
+    public void execute() {
+        mHerbivorous.killAnimal();
+        Forest.switchToMenu(mOwnerMenu);
+        mOwnerMenu.removeMenuElement(mElement.getId());
     }
 }

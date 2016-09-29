@@ -7,90 +7,89 @@ import menu.elements.other.SwitchMenuElement;
 import java.util.ArrayList;
 
 public class Menu {
-    private ArrayList<MenuElement> elements = new ArrayList<MenuElement>();
-    private String name = "default";
+    private ArrayList<MenuElement> mElements = new ArrayList<MenuElement>();
+    private String mName = "default";
 
-    private String description = "";
+    private String mDescription = "";
 
-    private Menu lastMenu = null;
-    private MenuElement exitElement = null;
+    private Menu mLastMenu = null;
+    private MenuElement mExitElement = null;
 
-    private int currentIndex = 0;
+    private int mCurrentIndex = 0;
 
     public Menu() {
         createExitElement();
     }
 
     public Menu(String name) {
-        this.name = name;
+        this.mName = name;
         createExitElement();
     }
 
     public Menu(String name, String description) {
-        this.name = name;
-        this.description = description;
+        this.mName = name;
+        this.mDescription = description;
         createExitElement();
     }
 
     public Menu(String name, Menu lastMenu) {
-        this.name = name;
-        this.lastMenu = lastMenu;
+        this.mName = name;
+        this.mLastMenu = lastMenu;
         createExitElement();
     }
 
     public Menu(String name, String description, Menu lastMenu) {
-        this.name = name;
-        this.description = description;
-        this.lastMenu = lastMenu;
+        this.mName = name;
+        this.mDescription = description;
+        this.mLastMenu = lastMenu;
         createExitElement();
     }
 
     public String getDescription() {
-        return description;
+        return mDescription;
     }
 
     public void createExitElement() {
-        if (lastMenu != null) {
-            exitElement = new SwitchMenuElement("back", lastMenu);
+        if (mLastMenu != null) {
+            mExitElement = new SwitchMenuElement("back", mLastMenu);
         } else {
-            exitElement = new ExitElement();
+            mExitElement = new ExitElement();
         }
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
-    public void AddMenuElement(MenuElement element) {
-        elements.add(element);
-        element.setId(currentIndex);
-        currentIndex++;
+    public void addMenuElement(MenuElement element) {
+        mElements.add(element);
+        element.setId(mCurrentIndex);
+        mCurrentIndex++;
     }
 
-    public void RemoveMenuElement(int id) {
-        for(int i=0; i < elements.size(); i++) {
-            if (elements.get(i).getId() == id)
-            {
-                elements.remove(i);
+    public void removeMenuElement(int id) {
+        for (int i = 0; i < mElements.size(); i++) {
+            if (mElements.get(i).getId() == id) {
+                mElements.remove(i);
             }
         }
     }
 
     public void printMenuElements() {
         int i = 1;
-        for (MenuElement element : elements) {
+        for (MenuElement element : mElements) {
             System.out.println(i + ") " + element.getName());
             i++;
         }
-        System.out.println(i + ") " + exitElement.getName());
+        System.out.println(i + ") " + mExitElement.getName());
     }
 
     public void executeElement(int id) {
-        if (id < elements.size()) {
-            elements.get(id).Execute();
+        if (id < mElements.size()) {
+            mElements.get(id).execute();
         } else {
-            if (id == elements.size()) {
-                exitElement.Execute();
+            if (id == mElements.size()) {
+                mExitElement.execute();
             } else {
                 System.out.println("no such variant... canceled");
             }

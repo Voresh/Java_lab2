@@ -5,14 +5,14 @@ import lab2.Forest;
 /**
  * Created by v on 28.09.16.
  */
-public class SaveToDataBaseElement extends  MenuElement {
+public class SaveToDataBaseElement extends MenuElement {
 
     public SaveToDataBaseElement(String name) {
         super(name);
     }
 
     @Override
-    public void Execute() {
+    public void execute() {
         Forest.saveForestDataToDataBase();
     }
 }

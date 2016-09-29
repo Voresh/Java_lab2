@@ -32,3 +32,25 @@
 [22:46:22]predator of size 2 created
 [22:46:22]predator of size 2 created
 [22:46:31]Program ended
+[11:15:48]Program started
+[11:15:56]Program ended
+[11:27:10]Program started
+[11:27:17]herbivorous of size 2 eating BLUEBERRY created
+[11:27:25]Program ended
+[11:31:37]Program started
+[11:31:42]Program ended
+[11:32:05]Program started
+[11:32:08]Program ended
+[11:40:07]Program started
+[11:40:12]predator of size 2 created
+[11:40:30]herbivorous of size 1 eating STRAWBERRY created
+[11:40:34]herbivorous of size 2 eating BLUEBERRY created
+[11:40:42]herbivorous of size 2 eating STRAWBERRY created
+[12:07:42]Program started
+[12:08:04]predator of size 6 created
+[12:08:14]predator of size 10 created
+[12:08:33]predator of size 6 removed
+[12:09:54]tree of type PINE created
+[12:10:22]herbivorous of size 5 eating RASPBERRY created
+[12:10:44]predator of size 10 removed
+[12:10:55]herbivorous of size 5 eating RASPBERRY removed

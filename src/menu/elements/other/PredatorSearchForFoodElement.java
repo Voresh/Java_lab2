@@ -1,22 +1,21 @@
 package menu.elements.other;
 
 
-import lab2.Animal;
 import lab2.Predator;
 
 /**
  * Created by v on 27.09.16.
  */
-public class PredatorSearchForFoodElement extends  MenuElement{
-    private Predator predator;
+public class PredatorSearchForFoodElement extends MenuElement {
+    private Predator mPredator;
 
     public PredatorSearchForFoodElement(String name, Predator predator) {
         super(name);
-        this.predator = predator;
+        this.mPredator = predator;
     }
 
     @Override
-    public void Execute() {
-        predator.searchForFood();
+    public void execute() {
+        mPredator.searchForFood();
     }
 }

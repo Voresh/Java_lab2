@@ -5,10 +5,11 @@ import lab2.Herbivorous;
 import menu.elements.other.MenuElement;
 
 import java.util.Scanner;
+
 /**
  * Created by v on 26.09.16.
  */
-public class HerbivorousCreatorElement  extends MenuElement {
+public class HerbivorousCreatorElement extends MenuElement {
 
     public HerbivorousCreatorElement(String name) {
         super(name);
@@ -18,9 +19,9 @@ public class HerbivorousCreatorElement  extends MenuElement {
     }
 
     @Override
-    public void Execute() {
+    public void execute() {
         System.out.print("enter herbivorous size or random symbol to cancel: ");
-        Scanner scanner  = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int size = 0;
         GrassType eatableType = GrassType.BLUEBERRY;
 

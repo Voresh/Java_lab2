@@ -5,14 +5,14 @@ import lab2.Forest;
 /**
  * Created by v on 28.09.16.
  */
-public class LoadFromDataBaseElement extends  MenuElement {
+public class LoadFromDataBaseElement extends MenuElement {
 
     public LoadFromDataBaseElement(String name) {
         super(name);
     }
 
     @Override
-    public void Execute() {
+    public void execute() {
         Forest.loadForestDateFromDataBase();
     }
 }

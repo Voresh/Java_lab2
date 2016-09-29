@@ -2,18 +2,18 @@ package lab2;
 
 public class Tree extends Plant {
     private TreeType mType;
-    private int id;
+    private int mId;
 
     public TreeType getType() {
         return mType;
     }
 
     public int getId() {
-        return id;
+        return mId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.mId = id;
     }
 
     public Tree(TreeType type) {
@@ -23,6 +23,6 @@ public class Tree extends Plant {
     }
 
     public void killTree() {
-        Forest.removeTreeFromForest(id);
+        Forest.removeTreeFromForest(mId);
     }
 }

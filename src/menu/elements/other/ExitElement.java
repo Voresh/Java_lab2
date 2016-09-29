@@ -4,7 +4,6 @@ import lab2.Forest;
 
 /**
  * Created by vl on 9/21/2016.
- *
  */
 public class ExitElement extends MenuElement {
 
@@ -13,12 +12,12 @@ public class ExitElement extends MenuElement {
     }
 
     public ExitElement() {
-        name = "exit";
+        mName = "exit";
     }
 
     @Override
-    public void Execute() {
+    public void execute() {
         //System.exit(0);
-        Forest.SwitchToMenu(null);
+        Forest.switchToMenu(null);
     }
 }

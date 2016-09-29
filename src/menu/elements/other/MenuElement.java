@@ -3,22 +3,21 @@ package menu.elements.other;
 
 /**
  * Created by vl on 9/21/2016.
- *
  */
 public class MenuElement {
-    protected String name = "default";
+    protected String mName = "default";
 
     private int id = 0;
 
     public MenuElement(String name) {
-        this.name = name;
+        this.mName = name;
     }
 
     public MenuElement() {
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public int getId() {
@@ -29,7 +28,7 @@ public class MenuElement {
         this.id = id;
     }
 
-    public void Execute() {
+    public void execute() {
 
     }
 }

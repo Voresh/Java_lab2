@@ -7,19 +7,19 @@ import menu.Menu;
  * Created by v on 26.09.16.
  */
 public class SwitchMenuElement extends MenuElement {
-    private Menu target;
+    private Menu mTarget;
 
     public SwitchMenuElement(String name, Menu target) {
         super(name);
-        this.target = target;
+        this.mTarget = target;
     }
 
     public SwitchMenuElement(Menu target) {
-        this.target = target;
+        this.mTarget = target;
     }
 
     @Override
-    public void Execute() {
-        Forest.SwitchToMenu(target);
+    public void execute() {
+        Forest.switchToMenu(mTarget);
     }
 }

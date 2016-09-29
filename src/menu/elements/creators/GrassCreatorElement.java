@@ -6,22 +6,16 @@ import menu.elements.other.MenuElement;
 
 import java.util.Scanner;
 
-/**
- * Created by v on 27.09.16.
- */
 public class GrassCreatorElement extends MenuElement {
 
     public GrassCreatorElement(String name) {
         super(name);
     }
 
-    public GrassCreatorElement() {
-    }
-
     @Override
-    public void Execute() {
-        Scanner scanner  = new Scanner(System.in);
-        GrassType type = GrassType.BLUEBERRY;
+    public void execute() {
+        Scanner scanner = new Scanner(System.in);
+        GrassType type;
 
         printGrassTypes();
         System.out.print("enter grass type number: ");
