@@ -14,20 +14,26 @@ public class ForestDatabase {
         createStorageFileIfNotExists();
     }
 
-    public void loadClassesFromDataBase() {//проверка на наличие аргументов и возможность других разделителей
+    public void loadClassesFromDataBase() {
         String db = readDataBase();
+        db = db.replaceAll(System.getProperty("line.separator"), "");
+        db = db.replaceAll(" ", "");
         String[] classes = db.split("-");
 
         for (String _class : classes) {
             String[] classFields = _class.split("_");
             if (classFields[0].equals("g")) {
-                new Grass(GrassType.values()[Integer.parseInt(classFields[1])]);
+                if (classFields.length == 2)
+                    new Grass(GrassType.values()[Integer.parseInt(classFields[1])]);
             } else if (classFields[0].equals("h")) {
-                new Herbivorous(Integer.parseInt(classFields[1]), GrassType.values()[Integer.parseInt(classFields[2])]);
+                if (classFields.length == 3)
+                    new Herbivorous(Integer.parseInt(classFields[1]), GrassType.values()[Integer.parseInt(classFields[2])]);
             } else if (classFields[0].equals("p")) {
-                new Predator(Integer.parseInt(classFields[1]));
+                if (classFields.length == 2)
+                    new Predator(Integer.parseInt(classFields[1]));
             } else if (classFields[0].equals("t")) {
-                new Tree(TreeType.values()[Integer.parseInt(classFields[1])]);
+                if (classFields.length == 2)
+                    new Tree(TreeType.values()[Integer.parseInt(classFields[1])]);
             }
         }
     }
