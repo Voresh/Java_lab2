@@ -5,12 +5,12 @@ import lab2.*;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ForestDatabase {
+public class Database {
     private String mDatabaseFileFullName = "forestdb";
     private String mDatabaseFileDirName = "db";
     private String mFileSeparator = System.getProperty("file.separator");
 
-    public ForestDatabase() {
+    public Database() {
         createStorageFileIfNotExists();
     }
 

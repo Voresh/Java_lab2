@@ -1,7 +1,8 @@
 package lab2;
 
-import lab3.ForestDatabase;
-import lab3.ForestLogger;
+import lab3.Database;
+import lab3.Logger;
+import lab4.PerformanceTest;
 import menu.*;
 import menu.elements.creators.GrassCreatorElement;
 import menu.elements.creators.HerbivorousCreatorElement;
@@ -32,8 +33,9 @@ public class Forest {
     private static int sCurrentPredatorId = 0;
     private static int sCurrentHerbivorousId = 0;
 
-    private static ForestDatabase sDataBase = new ForestDatabase();
-	private static ForestLogger sLogger = new ForestLogger();
+    private static Database sDataBase = new Database();
+	private static Logger sLogger = new Logger();
+    private static PerformanceTest sPerformanceTest = new PerformanceTest();
 
     private static Menu sCurrentMenu;
 
@@ -97,6 +99,7 @@ public class Forest {
 
         mainMenu.addMenuElement(new SaveToDataBaseElement("save"));
         mainMenu.addMenuElement(new LoadFromDataBaseElement("load"));
+        mainMenu.addMenuElement(new RunTestElement("run test",sPerformanceTest));
     }
 
     public static void switchToMenu(Menu menu) {

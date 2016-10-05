@@ -7,12 +7,18 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class ForestLogger {
+public class Logger {
     private String mLogFileFullName = "forest.log";
     private String mLogFileDirName = "logs";
     private String mFileSeparator = System.getProperty("file.separator");
 
-    public ForestLogger() {
+    public Logger() {
+        createLogFileIfNotExists();
+    }
+
+    public Logger(String name, String dir) {
+        mLogFileFullName = name.concat(".log");
+        mLogFileDirName = dir;
         createLogFileIfNotExists();
     }
 
@@ -62,6 +68,6 @@ public class ForestLogger {
 
     private String currentTimeLabel() {
         LocalTime time = LocalTime.now();
-        return "[" + time.format(DateTimeFormatter.ofPattern("HH:mm:ss")) + "]";
+        return "[" + time.format(DateTimeFormatter.ofPattern("HH:mm:ss:SSS")) + "]";
     }
 }
