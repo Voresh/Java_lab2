@@ -16,31 +16,53 @@ public class RunTestElement extends MenuElement{
     public void execute() {
         System.out.print("enter operations amount or random symbol to cancel: ");
         Scanner scanner = new Scanner(System.in);
-        int amount = 0;
 
-        if (scanner.hasNextInt()) {
-            amount = scanner.nextInt();
-        } else {
-            System.out.println("incorrect input... canceled");
-            return;
-        }
+        if (scanner.hasNextLine()) {
+            String userInput = scanner.nextLine();
+            userInput = userInput.replaceAll(" ", "");
+            String[] amounts = userInput.split(",");
 
-        System.out.println("1) ArrayList test");
-        System.out.println("2) array test");
-        System.out.print("enter test number: ");
+            System.out.println("1) ArrayList test");
+            System.out.println("2) array test");
+            System.out.print("enter test number: ");
 
-        if (scanner.hasNextInt()) {
-            int testNumber = scanner.nextInt();
-            if (testNumber == 1) {
-                mPerformanceTest.runArrayListTest(amount);
-            } else if (testNumber == 2) {
-                mPerformanceTest.runSimpleArrayTest(amount);
+            if (scanner.hasNextInt()) {
+                int testNumber = scanner.nextInt();
+                if (testNumber == 1) {
+                    for (String amount: amounts) {
+                        if (parsableToInteger(amount)) {
+                            mPerformanceTest.runArrayListTest(Integer.parseInt(amount));
+                        }
+                    }
+                } else if (testNumber == 2) {
+                    for (String amount: amounts) {
+                        if (parsableToInteger(amount)) {
+                            mPerformanceTest.runSimpleArrayTest(Integer.parseInt(amount));
+                        }
+                    }
+                } else {
+                    System.out.println("incorrect test number... canceled");
+                }
             } else {
-                System.out.println("incorrect test number... canceled");
+                System.out.println("incorrect input... canceled");
+                return;
             }
         } else {
             System.out.println("incorrect input... canceled");
             return;
+        }
+    }
+
+    private void rn() {
+
+    }
+
+    public boolean parsableToInteger(String string) {
+        try {
+            Integer.valueOf(string);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 }
