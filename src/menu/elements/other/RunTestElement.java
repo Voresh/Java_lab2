@@ -20,10 +20,8 @@ public class RunTestElement extends MenuElement{
         System.out.print("enter operations amount or random symbol to cancel: ");
         Scanner scanner = new Scanner(System.in);
 
-        if (scanner.hasNextLine()) {
-            String userInput = scanner.nextLine();
-            userInput = userInput.replaceAll(" ", "");
-            String[] amounts = userInput.split(",");
+        if (scanner.hasNextInt()) {
+            int amount = scanner.nextInt();
 
             System.out.println("1) ArrayList test");
             System.out.println("2) array test");
@@ -32,19 +30,11 @@ public class RunTestElement extends MenuElement{
             if (scanner.hasNextInt()) {
                 int testNumber = scanner.nextInt();
                 if (testNumber == 1) {
-                    for (String amount: amounts) {
-                        if (parsableToInteger(amount)) {
-                            GraphPainter g =  new GraphPainter("ArrayList performance graph",1000,500, 10);
-                            g.paintGraph(Integer.parseInt(amount), mPerformanceTest.runTstAL(Integer.parseInt(amount)));
-                        }
-                    }
+                    GraphPainter g =  new GraphPainter("ArrayList performance graph",1000,500);
+                    g.paintGraph(amount, mPerformanceTest.runTstAL(amount));
                 } else if (testNumber == 2) {
-                    for (String amount: amounts) {
-                        if (parsableToInteger(amount)) {
-                            GraphPainter g =  new GraphPainter("Array performance graph",1000,500, 10);
-                            g.paintGraph(Integer.parseInt(amount),mPerformanceTest.runTstAS(Integer.parseInt(amount)));
-                        }
-                    }
+                    GraphPainter g =  new GraphPainter("Array performance graph",1000,500);
+                    g.paintGraph(amount,mPerformanceTest.runTstAS(amount));
                 } else {
                     System.out.println("incorrect test number... canceled");
                 }

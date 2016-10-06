@@ -8,13 +8,18 @@ public class GraphPainter {
     private JFrame currentFrame;
     private int amount;
     private long[] y;
-    private int axisOffset;
+    private int axisOffset = 20;
+    private int arrowOffset = 5;
+    private int arrowLength = 10;
+    private int axisNameOffset = 15;
+    private int scaleInterval = 50;
+    private int scaleIntervalAmount = 8;
+    private int scaleIntervalOffset = 20;
 
-    public GraphPainter(String windowName,int width, int height, int axisOffset) {
+    public GraphPainter(String windowName,int width, int height) {
         currentFrame = new JFrame(windowName);
         currentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         currentFrame.setSize(width, height);
-        this.axisOffset = axisOffset;
     }
 
     public void paintGraph(int amount, long[] y) {
@@ -26,8 +31,8 @@ public class GraphPainter {
         graphics2D.fillRect(0, 0, currentFrame.getWidth(), currentFrame.getHeight());
         drawGraph(graphics2D);
         drawAxes(graphics2D);
-        JLabel label = new JLabel(new ImageIcon(bufferedImage));
-        currentFrame.add(label);
+        drawGrid(graphics2D);
+        currentFrame.add(new JLabel(new ImageIcon(bufferedImage)));
         currentFrame.pack();
         currentFrame.setVisible(true);
     }
@@ -36,13 +41,24 @@ public class GraphPainter {
         graphics.setColor(Color.black);
         graphics.drawLine(axisOffset, currentFrame.getHeight(), axisOffset, axisOffset);
         graphics.drawLine(0, currentFrame.getHeight() - axisOffset, currentFrame.getWidth() - axisOffset, currentFrame.getHeight() - axisOffset);
-        int arrowOffset = 5;
-        int arrowLength = 10;//!! to final
         graphics.drawLine(axisOffset, axisOffset, axisOffset - arrowOffset, axisOffset + arrowLength);
         graphics.drawLine(axisOffset, axisOffset, axisOffset + arrowOffset, axisOffset + arrowLength);
 
         graphics.drawLine(currentFrame.getWidth() - axisOffset, currentFrame.getHeight() - axisOffset, currentFrame.getWidth() - axisOffset - arrowLength, currentFrame.getHeight() - axisOffset - arrowOffset);
         graphics.drawLine(currentFrame.getWidth() - axisOffset, currentFrame.getHeight() - axisOffset, currentFrame.getWidth() - axisOffset - arrowLength, currentFrame.getHeight() - axisOffset + arrowOffset);
+
+        graphics.drawString("x",currentFrame.getWidth() - axisOffset - axisNameOffset, currentFrame.getHeight() - axisOffset + axisNameOffset);
+        graphics.drawString("t",axisOffset - axisNameOffset, axisOffset + axisNameOffset);
+        graphics.drawString("0", axisOffset - axisNameOffset,  currentFrame.getHeight() - axisOffset + axisNameOffset);
+    }
+
+    private void drawGrid(Graphics graphics) {
+        int centerX = axisOffset;
+        int centerY = currentFrame.getHeight() - axisOffset;
+        for (int i = 1; i < scaleIntervalAmount + 1; i++) {
+            graphics.drawLine(centerX - 4, centerY - scaleInterval*i, centerX + 4, centerY - scaleInterval*i);
+            graphics.drawString(Integer.toString(5*i), centerX - scaleIntervalOffset, centerY - scaleInterval*i);
+        }
     }
 
     private void drawGraph(Graphics graphics) {
