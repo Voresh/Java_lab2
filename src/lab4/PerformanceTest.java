@@ -27,7 +27,7 @@ public class PerformanceTest {
         long[] result = new long[amount];
         PerformanceTestClass[] testClasses = new PerformanceTestClass[amount];
         long startTime = 0;
-        long sumTime = 0;
+        //long sumTime = 0;
 
         for (int i = 0; i < amount; i++) {
             testClasses[i] = generateRandomTestClass();
@@ -52,7 +52,7 @@ public class PerformanceTest {
         long[] result = new long[amount];
         PerformanceTestClass[] testClasses = new PerformanceTestClass[amount];
         long startTime = 0;
-        long sumTime = 0;
+        //long sumTime = 0;
 
         for (int i = 0; i < amount; i++) {
             testClasses[i] = generateRandomTestClass();
@@ -62,7 +62,6 @@ public class PerformanceTest {
         for (int i = 0; i < amount; i++) {
             startTime = System.nanoTime();
             if (i > arraySimpleClass.length) {
-                System.out.println(arraySimpleClass.length);
                 arraySimpleClass = Arrays.copyOf(arraySimpleClass, (arraySimpleClass.length * 3) / 2 + 1);
             }
             result[i] = System.nanoTime() - startTime;

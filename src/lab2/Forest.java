@@ -100,7 +100,11 @@ public class Forest {
 
         mainMenu.addMenuElement(new SaveToDataBaseElement("save"));
         mainMenu.addMenuElement(new LoadFromDataBaseElement("load"));
-        mainMenu.addMenuElement(new RunTestElement("run test",sPerformanceTest));
+
+        Menu performanceMenu = new Menu("performance menu", mainMenu);
+        performanceMenu.addMenuElement(new RunArrayTestElement("run Array test",sPerformanceTest));
+        performanceMenu.addMenuElement(new RunArrayListTestElement("run ArrayList test",sPerformanceTest));
+        mainMenu.addMenuElement(new SwitchMenuElement("performance tests",performanceMenu));
     }
 
     public static void switchToMenu(Menu menu) {
