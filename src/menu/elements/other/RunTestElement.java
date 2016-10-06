@@ -1,7 +1,10 @@
 package menu.elements.other;
 
 import lab4.PerformanceTest;
+import lab5.GraphPanel;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.Scanner;
 
 public class RunTestElement extends MenuElement{
@@ -39,7 +42,16 @@ public class RunTestElement extends MenuElement{
                     for (String amount: amounts) {
                         if (parsableToInteger(amount)) {
                             //mPerformanceTest.runSimpleArrayTest(Integer.parseInt(amount));
-                            mPerformanceTest.runTstAS(Integer.parseInt(amount));
+
+
+                            JFrame myWindow = new JFrame("Test window");
+                            myWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            myWindow.setSize(1000, 500);
+
+                            Container container = myWindow.getContentPane();
+                            container.add(new GraphPanel(Integer.parseInt(amount), mPerformanceTest.runTstAL(Integer.parseInt(amount))), BorderLayout.CENTER);
+
+                            myWindow.setVisible(true);
                         }
                     }
                 } else {
@@ -55,9 +67,6 @@ public class RunTestElement extends MenuElement{
         }
     }
 
-    private void rn() {
-
-    }
 
     public boolean parsableToInteger(String string) {
         try {

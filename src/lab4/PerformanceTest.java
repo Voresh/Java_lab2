@@ -85,7 +85,7 @@ public class PerformanceTest {
             testClasses[i] = generateRandomTestClass();
         }
 
-        mLog.writeOtherMessage("ArrayList test started with operations amount " + amount);
+        //mLog.writeOtherMessage("ArrayList test started with operations amount " + amount);
         for (int i = 0; i < amount; i++) {
             startTime = System.nanoTime();
             if (i < arraySimpleClass.length) {
@@ -94,11 +94,11 @@ public class PerformanceTest {
             result[i] = System.nanoTime() - startTime;
         }
 
-        for(int i = 0; i < amount; i++) {
+        /*for(int i = 0; i < amount; i++) {
             mLog.writeOtherMessage(String.format("%.9f",result[i]/1000000000.0));
             sumTime += result[i];
         }
-        mLog.writeOtherMessage("test ended at " + String.format("%.9f",sumTime/1000000000.0) + " seconds");
+        mLog.writeOtherMessage("test ended at " + String.format("%.9f",sumTime/1000000000.0) + " seconds");*/
         return  result;
     }
 
