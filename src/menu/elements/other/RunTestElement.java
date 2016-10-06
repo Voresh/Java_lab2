@@ -31,13 +31,15 @@ public class RunTestElement extends MenuElement{
                 if (testNumber == 1) {
                     for (String amount: amounts) {
                         if (parsableToInteger(amount)) {
-                            mPerformanceTest.runArrayListTest(Integer.parseInt(amount));
+                            //mPerformanceTest.runArrayListTest(Integer.parseInt(amount));
+                            mPerformanceTest.runTstAL(Integer.parseInt(amount));
                         }
                     }
                 } else if (testNumber == 2) {
                     for (String amount: amounts) {
                         if (parsableToInteger(amount)) {
-                            mPerformanceTest.runSimpleArrayTest(Integer.parseInt(amount));
+                            //mPerformanceTest.runSimpleArrayTest(Integer.parseInt(amount));
+                            mPerformanceTest.runTstAS(Integer.parseInt(amount));
                         }
                     }
                 } else {
