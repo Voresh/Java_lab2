@@ -1,7 +1,7 @@
 package menu.elements.other;
 
 import lab4.PerformanceTest;
-import lab5.GraphPanel;
+import lab5.GraphPainter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +35,8 @@ public class RunTestElement extends MenuElement{
                     for (String amount: amounts) {
                         if (parsableToInteger(amount)) {
                             //mPerformanceTest.runArrayListTest(Integer.parseInt(amount));
-                            mPerformanceTest.runTstAL(Integer.parseInt(amount));
+                            GraphPainter g =  new GraphPainter("ArrayList performance graph",500,250);
+                            g.paintGraph(Integer.parseInt(amount), mPerformanceTest.runTstAL(Integer.parseInt(amount)));
                         }
                     }
                 } else if (testNumber == 2) {
@@ -44,14 +45,15 @@ public class RunTestElement extends MenuElement{
                             //mPerformanceTest.runSimpleArrayTest(Integer.parseInt(amount));
 
 
-                            JFrame myWindow = new JFrame("Test window");
-                            myWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            myWindow.setSize(1000, 500);
+                            //JFrame myWindow = new JFrame("Test window");
+                            //myWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            //myWindow.setSize(1000, 500);
 
-                            Container container = myWindow.getContentPane();
-                            container.add(new GraphPanel(Integer.parseInt(amount), mPerformanceTest.runTstAL(Integer.parseInt(amount))), BorderLayout.CENTER);
-
-                            myWindow.setVisible(true);
+                            //Container container = myWindow.getContentPane();
+                            //container.add(new GraphPainter(Integer.parseInt(amount), mPerformanceTest.runTstAL(Integer.parseInt(amount))), BorderLayout.CENTER);
+                            GraphPainter g =  new GraphPainter("Array performance graph",500,250);
+                            g.paintGraph(Integer.parseInt(amount),mPerformanceTest.runTstAS(Integer.parseInt(amount)));
+                            //myWindow.setVisible(true);
                         }
                     }
                 } else {
