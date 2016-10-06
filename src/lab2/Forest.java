@@ -58,6 +58,7 @@ public class Forest {
         getUserMenuInput();
 
         sLogger.writeProgramEnd();
+        System.exit(0);
     }
 
     public static void saveForestDataToDataBase() {

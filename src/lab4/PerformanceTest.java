@@ -61,7 +61,7 @@ public class PerformanceTest {
         //mLog.writeOtherMessage("ArrayList test started with operations amount " + amount);
         for (int i = 0; i < amount; i++) {
             startTime = System.nanoTime();
-            if (i >= arraySimpleClass.length) {
+            if (i > arraySimpleClass.length) {
                 System.out.println(arraySimpleClass.length);
                 arraySimpleClass = Arrays.copyOf(arraySimpleClass, (arraySimpleClass.length * 3) / 2 + 1);
             }
