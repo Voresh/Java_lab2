@@ -21,8 +21,14 @@ public class KillTreeElement extends MenuElement {
 
     @Override
     public void execute() {
-        mTree.killTree();
-        Forest.switchToMenu(mOwnerMenu);
-        mOwnerMenu.removeMenuElement(mElement.getId());
+        if (getConfirmation("remove tree?")) {
+            mTree.killTree();
+            Forest.switchToMenu(mOwnerMenu);
+            mOwnerMenu.removeMenuElement(mElement.getId());
+            System.out.println("tree removed successfully...");
+        }
+        else {
+            System.out.println("tree remove canceled... ");
+        }
     }
 }

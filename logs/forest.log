@@ -250,3 +250,33 @@
 [10:57:50:895]Program ended
 [11:00:29:284]Program started
 [11:00:47:621]Program started
+[11:27:57:629]Program started
+[11:28:08:398]grass of type STRAWBERRY created
+[11:31:04:969]Program started
+[11:31:09:356]grass of type BLUEBERRY created
+[11:31:21:853]grass of type BLUEBERRY removed
+[11:31:24:348]grass of type BLUEBERRY created
+[11:31:36:444]grass of type BLUEBERRY removed
+[11:31:46:837]Program ended
+[11:37:37:370]Program started
+[11:37:39:558]Program ended
+[11:43:03:183]Program started
+[11:43:06:937]grass of type BLUEBERRY created
+[11:43:19:018]grass of type BLUEBERRY removed
+[11:43:29:415]grass of type STRAWBERRY created
+[11:43:32:023]grass of type STRAWBERRY removed
+[11:43:36:030]Program ended
+[11:48:24:316]Program started
+[11:48:29:932]predator of size 100 created
+[11:48:34:736]predator of size 100 removed
+[11:48:51:999]herbivorous of size 1 eating STRAWBERRY created
+[11:48:55:533]herbivorous of size 1 eating STRAWBERRY removed
+[11:49:01:896]grass of type BLUEBERRY created
+[11:49:04:819]grass of type BLUEBERRY removed
+[11:49:07:920]tree of type OAK created
+[11:49:12:386]tree of type OAK removed
+[11:49:15:377]Program ended
+[11:49:47:811]Program started
+[11:49:50:935]tree of type PINE created
+[11:49:55:447]tree of type PINE removed
+[11:50:00:020]Program ended

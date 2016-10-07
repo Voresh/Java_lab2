@@ -16,27 +16,16 @@ public class KillGrassElement extends MenuElement {
         this.mOwnerMenu = ownerMenu;
     }
 
-    @Override //добавить подтверждение удаления
+    @Override
     public void execute() {
-        /*System.out.println("remove mGrass? [y/n]: ");
-        Scanner scanner  = new Scanner(System.in);
-
-        if (scanner.hasNext())
-        {
-
-            if (scanner.next() == "y") {
-                mGrass.killGrass();
-                Forest.RemoveGrassMenu(menu);
-                System.out.println("mGrass removed succesfully...");
-            } else if (scanner.next() == "n") {
-                System.out.println("canceled... ");
-            } else {
-                System.out.println("incorrect input... canceled");
-            }
-
-        }*/
-        mGrass.killGrass();
-        Forest.switchToMenu(mOwnerMenu);
-        mOwnerMenu.removeMenuElement(mElement.getId());
+        if (getConfirmation("remove grass?")) {
+            mGrass.killGrass();
+            Forest.switchToMenu(mOwnerMenu);
+            mOwnerMenu.removeMenuElement(mElement.getId());
+            System.out.println("grass removed successfully...");
+        }
+        else {
+            System.out.println("grass remove canceled... ");
+        }
     }
 }

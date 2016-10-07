@@ -21,8 +21,14 @@ public class KillHerbivorousElement extends MenuElement {
 
     @Override
     public void execute() {
-        mHerbivorous.killAnimal();
-        Forest.switchToMenu(mOwnerMenu);
-        mOwnerMenu.removeMenuElement(mElement.getId());
+        if (getConfirmation("remove herbivorous?")) {
+            mHerbivorous.killAnimal();
+            Forest.switchToMenu(mOwnerMenu);
+            mOwnerMenu.removeMenuElement(mElement.getId());
+            System.out.println("herbivorous removed successfully...");
+        }
+        else {
+            System.out.println("herbivorous remove canceled... ");
+        }
     }
 }

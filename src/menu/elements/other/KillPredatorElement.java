@@ -21,8 +21,14 @@ public class KillPredatorElement extends MenuElement {
 
     @Override
     public void execute() {
-        mPredator.killAnimal();
-        Forest.switchToMenu(mOwnerMenu);
-        mOwnerMenu.removeMenuElement(mElement.getId());
+        if (getConfirmation("remove predator?")) {
+            mPredator.killAnimal();
+            Forest.switchToMenu(mOwnerMenu);
+            mOwnerMenu.removeMenuElement(mElement.getId());
+            System.out.println("predator removed successfully...");
+        }
+        else {
+            System.out.println("predator remove canceled... ");
+        }
     }
 }

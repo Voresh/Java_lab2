@@ -1,6 +1,10 @@
 package menu.elements.other;
 
 
+import lab2.Forest;
+
+import java.util.Scanner;
+
 /**
  * Created by vl on 9/21/2016.
  */
@@ -30,5 +34,22 @@ public class MenuElement {
 
     public void execute() {
 
+    }
+
+    public static boolean getConfirmation(String question) {
+        System.out.print(question.concat(" [y/n]: "));
+        Scanner scanner  = new Scanner(System.in);
+
+        if (scanner.hasNext())
+        {
+            String answer = scanner.next();
+            if (answer.equals("y")) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+        return  false;
     }
 }
