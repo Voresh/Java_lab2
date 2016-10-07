@@ -1,7 +1,5 @@
 package lab4;
 
-import lab2.Grass;
-import lab2.GrassType;
 import lab3.Logger;
 
 import java.util.ArrayList;
@@ -23,7 +21,7 @@ public class PerformanceTest {
         mLog = new Logger(mLogFileName, mLogFileDir);
     }
 
-    public long[] runTstAL(int amount) {
+    public long[] runArrayListTest(int amount) {
         long[] result = new long[amount];
         PerformanceTestClass[] testClasses = new PerformanceTestClass[amount];
         long startTime = 0;
@@ -48,7 +46,7 @@ public class PerformanceTest {
         return result;
     }
 
-    public long[] runTstAS(int amount) {
+    public long[] runArrayTest(int amount) {
         long[] result = new long[amount];
         PerformanceTestClass[] testClasses = new PerformanceTestClass[amount];
         long startTime = 0;
@@ -61,9 +59,10 @@ public class PerformanceTest {
         //mLog.writeOtherMessage("ArrayList test started with operations amount " + amount);
         for (int i = 0; i < amount; i++) {
             startTime = System.nanoTime();
-            if (i > arraySimpleClass.length) {
+            if (i >= arraySimpleClass.length) {
                 arraySimpleClass = Arrays.copyOf(arraySimpleClass, (arraySimpleClass.length * 3) / 2 + 1);
             }
+            arraySimpleClass[i] = testClasses[i];
             result[i] = System.nanoTime() - startTime;
         }
 

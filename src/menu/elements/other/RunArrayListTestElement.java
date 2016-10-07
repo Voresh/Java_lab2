@@ -21,7 +21,7 @@ public class RunArrayListTestElement extends MenuElement{
         if (scanner.hasNextInt()) {
             int amount = scanner.nextInt();
             GraphPainter g =  new GraphPainter("ArrayList performance graph",1000,500);
-            g.paintGraph(amount,mPerformanceTest.runTstAL(amount));
+            g.paintGraph(amount,mPerformanceTest.runArrayListTest(amount));
         } else {
             System.out.println("incorrect input... canceled");
             return;
