@@ -105,6 +105,8 @@ public class Forest {
         performanceMenu.addMenuElement(new RunArrayTestElement("run Array test",sPerformanceTest));
         performanceMenu.addMenuElement(new RunArrayListTestElement("run ArrayList test",sPerformanceTest));
         mainMenu.addMenuElement(new SwitchMenuElement("performance tests",performanceMenu));
+
+        mainMenu.addMenuElement(new OpenGUIElement("open GUI"));
     }
 
     public static void switchToMenu(Menu menu) {
