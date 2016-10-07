@@ -2,8 +2,6 @@ package menu.elements.other;
 
 import lab6.ForestGUI;
 
-import javax.swing.*;
-
 public class OpenGUIElement extends MenuElement {
     private ForestGUI currentGUI;
 
@@ -16,7 +14,7 @@ public class OpenGUIElement extends MenuElement {
         if (currentGUI != null) {
             currentGUI.setVisible(true);
         } else {
-            currentGUI = new ForestGUI("Add herbivorous",300,110);
+            currentGUI = new ForestGUI("Add herbivorous",310,110);
         }
     }
 }
