@@ -13,13 +13,9 @@ public class Menu {
     private String mDescription = "";
 
     private Menu mLastMenu = null;
-    private MenuElement mExitElement = null;
+    private MenuElement mExitElement;
 
     private int mCurrentIndex = 0;
-
-    public Menu() {
-        createExitElement();
-    }
 
     public Menu(String name) {
         this.mName = name;

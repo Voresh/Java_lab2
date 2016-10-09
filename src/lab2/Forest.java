@@ -51,13 +51,20 @@ public class Forest {
     private static Map<Integer,Integer> sPredatorMenuElementsId = new HashMap<Integer, Integer>();
     private static Map<Integer,Integer> sHerbivorousMenuElementsId = new HashMap<Integer, Integer>();
 
+    private static boolean writeForestLog;
+
     public static void main(String[] args) {
-        sLogger.writeProgramStart();
+        writeForestLog = MenuElement.getConfirmation("write forest log?");
+
+        if (writeForestLog)
+            sLogger.writeProgramStart();
 
         createMenu();
         getUserMenuInput();
 
-        sLogger.writeProgramEnd();
+        if (writeForestLog)
+            sLogger.writeProgramEnd();
+
         System.exit(0);
     }
 
@@ -157,7 +164,8 @@ public class Forest {
     public static void removePredatorFromForest(int id) {
         for (int i = 0; i < sPredators.size(); i++) {
             if (sPredators.get(i).getId() == id) {
-                sLogger.writeOtherMessage("predator of size " + sPredators.get(i).getSize() + " removed");
+                if (writeForestLog)
+                    sLogger.writeOtherMessage("predator of size " + sPredators.get(i).getSize() + " removed");
                 sPredators.remove(i);
                 sPredatorsMainMenu.removeMenuElement(sPredatorMenuElementsId.get(id));
             }
@@ -167,8 +175,9 @@ public class Forest {
     public static void removeHerbivorousFromForest(int id) {
         for (int i = 0; i < sHerbivorous.size(); i++) {
             if (sHerbivorous.get(i).getId() == id) {
-                sLogger.writeOtherMessage("herbivorous of size " + sHerbivorous.get(i).getSize() + " eating "
-                        + sHerbivorous.get(i).getEatableType() + " removed");
+                if (writeForestLog)
+                    sLogger.writeOtherMessage("herbivorous of size " + sHerbivorous.get(i).getSize() + " eating "
+                            + sHerbivorous.get(i).getEatableType() + " removed");
                 sHerbivorous.remove(i);
                 sHerbivorousMainMenu.removeMenuElement(sHerbivorousMenuElementsId.get(id));
             }
@@ -178,7 +187,8 @@ public class Forest {
     public static void removeGrassFromForest(int id) {
         for (int i = 0; i < sGrass.size(); i++) {
             if (sGrass.get(i).getId() == id) {
-                sLogger.writeOtherMessage("grass of type " + sGrass.get(i).getType().toString() + " removed");
+                if (writeForestLog)
+                    sLogger.writeOtherMessage("grass of type " + sGrass.get(i).getType().toString() + " removed");
                 sGrass.remove(i);
                 sGrassMainMenu.removeMenuElement(sGrassMenuElementsId.get(id));
             }
@@ -188,7 +198,8 @@ public class Forest {
     public static void removeTreeFromForest(int id) {
         for (int i = 0; i < sTrees.size(); i++) {
             if (sTrees.get(i).getId() == id) {
-                sLogger.writeOtherMessage("tree of type " + sTrees.get(i).getType().toString() + " removed");
+                if (writeForestLog)
+                    sLogger.writeOtherMessage("tree of type " + sTrees.get(i).getType().toString() + " removed");
                 sTrees.remove(i);
                 sTreesMainMenu.removeMenuElement(sTreeMenuElementsId.get(id));
             }
@@ -199,8 +210,10 @@ public class Forest {
         sGrass.add(grass);
         grass.setId(sCurrentGrassId);
         sCurrentGrassId++;
-        sLogger.writeOtherMessage("grass of type " + grass.getType().toString() + " created");
         createGrassMenu(grass);
+
+        if (writeForestLog)
+            sLogger.writeOtherMessage("grass of type " + grass.getType().toString() + " created");
     }
 
     public static void addTreeToForest(Tree tree) {
@@ -208,7 +221,9 @@ public class Forest {
         tree.setId(sCurrentTreeId);
         sCurrentTreeId++;
         createTreeMenu(tree);
-        sLogger.writeOtherMessage("tree of type " + tree.getType().toString() + " created");
+
+        if (writeForestLog)
+            sLogger.writeOtherMessage("tree of type " + tree.getType().toString() + " created");
     }
 
     public static void addPredatorToForest(Predator predator) {
@@ -216,7 +231,9 @@ public class Forest {
         predator.setId(sCurrentPredatorId);
         sCurrentPredatorId++;
         createPredatorMenu(predator);
-        sLogger.writeOtherMessage("predator of size " + predator.getSize() + " created");
+
+        if (writeForestLog)
+            sLogger.writeOtherMessage("predator of size " + predator.getSize() + " created");
     }
 
     public static void addHerbivorousToForest(Herbivorous herbivorous) {
@@ -224,7 +241,9 @@ public class Forest {
         herbivorous.setId(sCurrentHerbivorousId);
         sCurrentHerbivorousId++;
         createHerbivorousMenu(herbivorous);
-        sLogger.writeOtherMessage("herbivorous of size " + herbivorous.getSize() + " eating " + herbivorous.getEatableType() + " created");
+
+        if (writeForestLog)
+            sLogger.writeOtherMessage("herbivorous of size " + herbivorous.getSize() + " eating " + herbivorous.getEatableType() + " created");
     }
 
     public static void clearForest() {
