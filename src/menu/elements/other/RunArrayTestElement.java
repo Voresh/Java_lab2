@@ -21,7 +21,7 @@ public class RunArrayTestElement extends MenuElement{
         if (scanner.hasNextInt()) {
             int amount = scanner.nextInt();
             GraphPainter g =  new GraphPainter("Array performance graph",1000,500);
-            g.paintGraph(amount,mPerformanceTest.runArrayTest(amount));
+            g.paintGraph(amount,mPerformanceTest.runArrayTest(amount, getConfirmation("write log?")));
         } else {
             System.out.println("incorrect input... canceled");
             return;

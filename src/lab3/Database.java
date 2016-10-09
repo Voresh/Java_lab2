@@ -14,6 +14,7 @@ public class Database {
         createStorageFileIfNotExists();
     }
 
+    //уместнее делать создание уже в лесу, а отсюда возвращать массив классов и аргументов
     public void loadClassesFromDataBase() {
         String db = readDataBase();
         db = db.replaceAll(System.getProperty("line.separator"), "");
@@ -38,6 +39,7 @@ public class Database {
         }
     }
 
+    //сюда лучше массив аргументов которые записывать
     public void saveClassesToDataBase(ArrayList<Grass> grass, ArrayList<Tree> trees, ArrayList<Herbivorous> herbivorous, ArrayList<Predator> predators) {
         String db = "";
         int i = 0;

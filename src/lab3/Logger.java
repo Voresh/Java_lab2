@@ -38,15 +38,15 @@ public class Logger {
     }
 
     public void writeProgramStart() {
-        writeToLog(currentTimeLabel() + "Program started");
+        writeToLog(currentTimeLabel().concat("Program started"));
     }
 
     public void writeProgramEnd() {
-        writeToLog(currentTimeLabel() + "Program ended");
+        writeToLog(currentTimeLabel().concat("Program ended"));
     }
 
     public void writeOtherMessage(String message) {
-        writeToLog(currentTimeLabel() + message);
+        writeToLog(currentTimeLabel().concat(message));
     }
 
     private void writeToLog(String str) {
