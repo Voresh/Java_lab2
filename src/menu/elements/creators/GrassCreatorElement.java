@@ -22,7 +22,7 @@ public class GrassCreatorElement extends MenuElement {
 
         if (scanner.hasNextInt()) {
             int inputInt = scanner.nextInt() - 1;
-            if (inputInt < GrassType.values().length) {
+            if ((inputInt < GrassType.values().length) && (inputInt >= 0)) {
                 type = GrassType.values()[inputInt];
             } else {
                 System.out.println("incorrect input... canceled");

@@ -28,7 +28,7 @@ public class TreeCreatorElement extends MenuElement {
 
         if (scanner.hasNextInt()) {
             int inputInt = scanner.nextInt() - 1;
-            if (inputInt < TreeType.values().length) {
+            if ((inputInt < TreeType.values().length) && (inputInt >= 0)) {
                 type = TreeType.values()[inputInt];
             } else {
                 System.out.println("incorrect input... canceled");

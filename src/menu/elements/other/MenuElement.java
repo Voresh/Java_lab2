@@ -1,13 +1,7 @@
 package menu.elements.other;
 
-
-import lab2.Forest;
-
 import java.util.Scanner;
 
-/**
- * Created by vl on 9/21/2016.
- */
 public class MenuElement {
     protected String mName = "default";
 

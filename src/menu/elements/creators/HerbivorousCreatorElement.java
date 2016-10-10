@@ -10,6 +10,8 @@ import java.util.Scanner;
  * Created by v on 26.09.16.
  */
 public class HerbivorousCreatorElement extends MenuElement {
+    private int minSize = 1;
+    private int maxSize = 1000;
 
     public HerbivorousCreatorElement(String name) {
         super(name);
@@ -27,7 +29,10 @@ public class HerbivorousCreatorElement extends MenuElement {
 
         if (scanner.hasNextInt()) {
             size = scanner.nextInt();
-
+            if ((size > maxSize) || (size < minSize)) {
+                System.out.println("incorrect size... canceled");
+                return;
+            }
         } else {
             System.out.println("incorrect input... canceled");
             return;
@@ -38,7 +43,7 @@ public class HerbivorousCreatorElement extends MenuElement {
 
         if (scanner.hasNextInt()) {
             int inputInt = scanner.nextInt() - 1;
-            if (inputInt < GrassType.values().length) {
+            if ((inputInt < GrassType.values().length) && (inputInt >= 0)) {
                 eatableType = GrassType.values()[inputInt];
             } else {
                 System.out.println("incorrect input... canceled");

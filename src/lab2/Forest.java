@@ -56,8 +56,12 @@ public class Forest {
     public static void main(String[] args) {
         writeForestLog = MenuElement.getConfirmation("write forest log?");
 
-        if (writeForestLog)
+        if (writeForestLog) {
+            System.out.println("logging enabled...");
             sLogger.writeProgramStart();
+        } else {
+            System.out.println("logging disabled...");
+        }
 
         createMenu();
         getUserMenuInput();
@@ -123,8 +127,8 @@ public class Forest {
     private static void getUserMenuInput() {
         Scanner scanner = new Scanner(System.in);
         while (sCurrentMenu != null) {
-            System.out.println("====================");
-            System.out.println("| Menu: " + sCurrentMenu.getName() + " |");
+            System.out.println(menuSeparator());
+            System.out.println("| Menu: ".concat(sCurrentMenu.getName()).concat(" |"));
             if (!sCurrentMenu.getDescription().equals(""))
                 System.out.println(sCurrentMenu.getDescription());
             sCurrentMenu.printMenuElements();
@@ -132,10 +136,14 @@ public class Forest {
             if (scanner.hasNextInt()) {
                 sCurrentMenu.executeElement(scanner.nextInt() - 1);
             } else {
-                System.out.println("not int... exit");
-                sCurrentMenu = null;
+                System.out.println("incorrect input... canceled");
+                scanner.next();
             }
         }
+    }
+
+    private static String menuSeparator() {
+        return  "====================";
     }
 
     public static Grass searchForGrassOfType(GrassType type) {

@@ -6,6 +6,8 @@ import menu.elements.other.MenuElement;
 import java.util.Scanner;
 
 public class PredatorCreatorElement extends MenuElement {
+    private int minSize = 1;
+    private int maxSize = 1000;
 
     public PredatorCreatorElement(String name) {
         super(name);
@@ -20,9 +22,13 @@ public class PredatorCreatorElement extends MenuElement {
         Scanner scanner = new Scanner(System.in);
 
         if (scanner.hasNextInt()) {
-            int inputInt = scanner.nextInt();
-            new Predator(inputInt);
-            System.out.println("predator of size " + inputInt + " created");
+            int size = scanner.nextInt();
+            if ((size > maxSize) || (size < minSize)) {
+                System.out.println("incorrect size... canceled");
+                return;
+            }
+            new Predator(size);
+            System.out.println("predator of size " + size + " created");
         } else {
             System.out.println("incorrect input... canceled");
         }
